@@ -1,0 +1,33 @@
+'use client'
+
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface FaqJsonLdProps {
+  items: FAQItem[]
+}
+
+export function FaqJsonLd({ items }: FaqJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      suppressHydrationWarning
+    />
+  )
+}
