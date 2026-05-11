@@ -29,15 +29,15 @@ export function HeroSection() {
             />
           </div>
           <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
-            Studio privé &middot; {siteConfig.address.city}
+            Studio &middot; {siteConfig.address.city}
           </span>
           <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
             Votre tatouage, dans un cadre{" "}
             <span className="text-primary">calme et soigné</span>
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-            Studio privé de tatouage à {siteConfig.address.city} ({siteConfig.address.department}),
-            sur rendez-vous uniquement. Fine line, blackwork, floral &mdash;
+            Studio de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).
+            Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
             chaque projet est préparé avec soin.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">

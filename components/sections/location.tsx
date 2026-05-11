@@ -53,9 +53,6 @@ export function LocationSection() {
               >
                 Ouvrir dans Google Maps
               </a>
-              <p className="mt-2 rounded-lg border border-accent/20 bg-accent/5 p-3 text-xs leading-relaxed text-muted-foreground">
-                L{"'"}adresse precise du studio est communiquee lors de la prise de rendez-vous.
-              </p>
             </div>
 
             <div className="flex flex-col gap-3">

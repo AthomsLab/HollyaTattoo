@@ -13,16 +13,17 @@ import { LocationSection } from "@/components/sections/location"
 import { CtaSection } from "@/components/sections/cta"
 
 export const metadata: Metadata = {
-  title: "Holly Tattoo | Tatoueuse Vendée",
+  title: "Holly Tattoo | Tatoueuse Saint-Gilles-Croix-de-Vie, Vendée",
   description: siteConfig.description,
   keywords: [
     "tatouage",
     "tatoueuse",
     "Vendée",
-    "Saint-Reverend",
+    "Saint-Gilles-Croix-de-Vie",
+    "dark-pop",
     "fine line",
-    "blackwork",
     "floral",
+    "flash tattoo",
     "studio",
     "85",
   ],
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Holly Tattoo | Tatoueuse Vendée",
+    title: "Holly Tattoo | Tatoueuse Saint-Gilles-Croix-de-Vie, Vendée",
     description: siteConfig.description,
     images: [
       {

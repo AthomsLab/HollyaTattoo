@@ -21,9 +21,9 @@ const reassurances = [
   },
   {
     icon: Sparkles,
-    title: "Studio privé & calme",
+    title: "Studio calme & dédié",
     description:
-      "Un espace dédié, sans passage, pour une séance sereine et une attention totale à votre projet.",
+      "Un espace pensé pour votre confort, pour une séance sereine et une attention totale à votre projet.",
   },
 ]
 

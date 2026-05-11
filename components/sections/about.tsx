@@ -28,22 +28,23 @@ export function AboutSection() {
               A propos
             </span>
             <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-              Un studio privé, un accueil sur mesure
+              Un studio, un accueil sur mesure
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                {siteConfig.artistName} vous accueille dans son studio privé à{" "}
+                Je vous accueille dans mon studio à{" "}
                 {siteConfig.address.city} ({siteConfig.address.department}), un espace calme
                 et soigné, pensé pour que chaque séance se déroule dans les meilleures conditions.
               </p>
               <p>
-                Passionnée par le tatouage fin et délicat, elle travaille principalement en
-                fine line, blackwork et floral. Chaque projet est unique et préparé en amont
+                Passionnée par le tatouage fin et délicat, je travaille principalement en
+                dark-pop, fine line et floral. Chaque projet est unique et préparé en amont
                 pour un résultat à la hauteur de vos attentes.
               </p>
               <p>
-                Le studio fonctionne uniquement sur rendez-vous, pour vous garantir un temps
-                dédié, une ambiance sereine et une attention particulière aux détails.
+                Le studio propose des flashs sans rendez-vous ainsi que des projets personnalisés
+                sur rendez-vous, pour vous garantir un temps dédié, une ambiance sereine et une
+                attention particulière aux détails.
               </p>
             </div>
           </div>
