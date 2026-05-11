@@ -10,8 +10,8 @@ export function AboutSection() {
           <div className="relative flex-shrink-0">
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/14030-uPiKPYXmXwtqCZ3wfJG30ygQfeaLUG.jpg"
-                alt="Vue d'ensemble du studio Holly Tattoo"
+                src="/images/studioStGilles.webp"
+                alt="Studio Holly Tattoo à Saint-Gilles-Croix-de-Vie avec présentoir de flashs"
                 width={480}
                 height={600}
                 className="h-auto max-h-[500px] w-full max-w-md object-cover"

@@ -92,8 +92,8 @@ export function HeroSection() {
               </div>
               <div className="overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/14045-axrMWN1GV2IJOl517U6fpVF4lgjjuD.jpg"
-                  alt="Studio Holly Tattoo - espace de travail avec plantes"
+                  src="/images/back_flower.webp"
+                  alt="Tatouage floral fine line dans le dos - fleur en traits délicats"
                   width={480}
                   height={640}
                   className="h-auto w-full object-cover"
