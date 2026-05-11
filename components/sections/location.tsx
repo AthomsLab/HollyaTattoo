@@ -23,7 +23,7 @@ export function LocationSection() {
           {/* Map */}
           <div className="relative flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
-              src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - 0.02},${siteConfig.geo.lat - 0.012},${siteConfig.geo.lng + 0.02},${siteConfig.geo.lat + 0.012}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - 0.01},${siteConfig.geo.lat - 0.006},${siteConfig.geo.lng + 0.01},${siteConfig.geo.lat + 0.006}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
               width="100%"
               height="400"
               className="border-0"
