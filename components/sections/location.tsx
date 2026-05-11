@@ -21,16 +21,39 @@ export function LocationSection() {
 
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
           {/* Map */}
-          <div className="flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
+          <div className="relative flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
-              src={`https://www.openstreetmap.org/export/embed.html?bbox=-1.87,46.67,-1.80,46.72&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - 0.01},${siteConfig.geo.lat - 0.006},${siteConfig.geo.lng + 0.01},${siteConfig.geo.lat + 0.006}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
               width="100%"
               height="400"
               className="border-0"
               loading="lazy"
-              title="Carte du studio Holly Tattoo a Saint-Reverend"
+              title="Carte du studio Holly Tattoo a Saint-Gilles-Croix-de-Vie"
               aria-label="Carte interactive montrant la localisation du studio"
             />
+            {/* Pink marker overlay centered on the studio */}
+            <div
+              className="pointer-events-none absolute"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -100%)",
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 36"
+                width="32"
+                height="48"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 8.25 12 24 12 24S24 20.25 24 12C24 5.373 18.627 0 12 0z"
+                  fill="#e8427a"
+                />
+                <circle cx="12" cy="12" r="5" fill="white" />
+              </svg>
+            </div>
           </div>
 
           {/* Info */}
