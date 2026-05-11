@@ -8,6 +8,13 @@ export type GalleryImage = {
 
 export const galleryImages: GalleryImage[] = [
   {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg",
+    alt: "Holly concentrée sur un tatouage avec headlamp - portrait de l'artiste",
+    tags: ["artiste", "travail"],
+    width: 960,
+    height: 1280,
+  },
+  {
     src: "/images/gallery/cyber_atom.webp",
     alt: "Tatouage cyber-pop mandala sur la main - design géométrique et futuriste",
     tags: ["dark-pop", "géométrique"],
@@ -118,13 +125,6 @@ export const galleryImages: GalleryImage[] = [
     tags: ["fine line", "animal"],
     width: 600,
     height: 800,
-  },
-  {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg",
-    alt: "Holly concentrée sur un tatouage avec headlamp - portrait de l'artiste",
-    tags: ["artiste", "travail"],
-    width: 960,
-    height: 1280,
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fleurs-BUsNUNbbX0PIyYAyLO6iDSVm7syX27.jpg",
