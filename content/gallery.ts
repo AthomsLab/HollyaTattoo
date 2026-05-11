@@ -1,0 +1,178 @@
+export type GalleryImage = {
+  src: string
+  alt: string
+  tags: string[]
+  width: number
+  height: number
+}
+
+export const galleryImages: GalleryImage[] = [
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg",
+    alt: "Holly concentrée sur un tatouage avec headlamp - portrait de l'artiste",
+    tags: ["artiste", "travail"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "/images/gallery/cyber_atom.webp",
+    alt: "Tatouage cyber-pop mandala sur la main - design géométrique et futuriste",
+    tags: ["dark-pop", "géométrique"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/japan_flower.webp",
+    alt: "Tatouage fleur rose avec visage stylisé - fine line et touches colorées",
+    tags: ["floral", "fine line"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/kiss_me.webp",
+    alt: "Tatouage minimaliste \"Kiss Me\" avec cœurs - fine line délicate",
+    tags: ["fine line", "minimaliste"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/rose_under_bbs.webp",
+    alt: "Tatouage rose fine line sous la poitrine - fleur avec détails botaniques",
+    tags: ["floral", "fine line"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/loutre.webp",
+    alt: "Tatouage loutre réaliste gris avec bulles - style cute et détaillé",
+    tags: ["réaliste", "animal"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/moon.webp",
+    alt: "Tatouage lune avec cerisiers - floral fine line et symbole lunaire",
+    tags: ["floral", "fine line"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/lotus_under_bbs.webp",
+    alt: "Tatouage lotus géométrique sous la poitrine - design symétrique fine line",
+    tags: ["floral", "géométrique"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/japan_btc.webp",
+    alt: "Tatouage personnage japonais avec bun ears - style dark-pop",
+    tags: ["dark-pop", "portrait"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/abstrait.webp",
+    alt: "Tatouage figure abstraite minimaliste - silhouette fine line épurée",
+    tags: ["fine line", "abstrait"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/star_flowers.webp",
+    alt: "Tatouage fleurs étoilées sur le ventre - motifs botaniques délicats",
+    tags: ["floral", "fine line"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/fine_line_reveuse.webp",
+    alt: "Tatouage \"La Rêveuse\" en cursive fine line - élégance épurée",
+    tags: ["fine line", "lettrage"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/tiger.webp",
+    alt: "Tatouage femme avec serpent et tigre - style dark-pop et mythologique",
+    tags: ["dark-pop", "animal"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/timbre.webp",
+    alt: "Tatouage timbre postal avec palmier - design ludique et voyageur",
+    tags: ["fine line", "paysage"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/neck_butterfly.webp",
+    alt: "Tatouage papillon sur le cou - fine line délicate et discret",
+    tags: ["fine line", "animal"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/mont_fuji.webp",
+    alt: "Tatouage mont Fuji avec cerisiers - style japonais fine line",
+    tags: ["paysage", "fine line"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "/images/gallery/butterfly.webp",
+    alt: "Tatouage cascade de 3 papillons - fine line symétrique et fluide",
+    tags: ["fine line", "animal"],
+    width: 600,
+    height: 800,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fleurs-BUsNUNbbX0PIyYAyLO6iDSVm7syX27.jpg",
+    alt: "Tatouage floral avec motifs décoratifs et rubans ondulés",
+    tags: ["floral", "fine line"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/catzoom-kdtfGyncq2Bigxg75eIV1JzGV20IV9.jpg",
+    alt: "Tatouage félin souriant - chat d'Alice in Wonderland",
+    tags: ["fine line", "fantaisie"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HollyBw-y4kV58IJQ35EVqYOfBqSJtUCvNmKxP.jpg",
+    alt: "Holly tatouant en noir et blanc - détail du travail",
+    tags: ["artiste", "travail"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/catlove-2UkE8WrRHybcTE00DtNcy1HDyHrecw.jpg",
+    alt: "Tatouage fine line - chat et femme avec cœur rose",
+    tags: ["fine line", "floral"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/esquie-gTlYaV8zZSASYMhaf3unKDDr0A0ac9.jpg",
+    alt: "Tatouage géométrique - design occulte avec rayons architecturaux",
+    tags: ["blackwork", "géométrique"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bouquet-ioEI8FYGTidA5rJ8jytTgEG1SIV6zH.jpg",
+    alt: "Tatouage floral fin - bouquet avec texte \"No Rain No Flowers\"",
+    tags: ["floral", "fine line"],
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/miroir-0Noypiy7xKgKdrcV4PVKJdKvrAAmqI.jpg",
+    alt: "Tatouage gothique - tour et chapelle architecturale fine line",
+    tags: ["fine line", "gothique"],
+    width: 960,
+    height: 1280,
+  },
+]
