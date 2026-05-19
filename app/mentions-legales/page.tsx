@@ -55,6 +55,21 @@ export default function MentionsLegales() {
                   ou des eventuelles carences dans la mise a jour des informations.
                 </p>
               </div>
+              <div>
+                <h2 className="mb-2 font-serif text-lg font-semibold text-foreground">Credits</h2>
+                <p>
+                  Favicon :{" "}
+                  <a
+                    href="https://www.flaticon.com/free-icons/letter-h"
+                    title="letter h icons"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    Letter h icons created by NajmunNahar - Flaticon
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </section>

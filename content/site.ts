@@ -30,8 +30,8 @@ export const siteConfig = {
     { day: "Dimanche", hours: "Fermé" },
   ],
   geo: {
-    lat: 46.69600901864318,
-    lng: -1.9399661159142811,
+    lat: 46.69579650698575,
+    lng: -1.9400214576717854,
   },
   styles: [
     {
