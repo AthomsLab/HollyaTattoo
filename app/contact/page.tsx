@@ -4,13 +4,11 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ContactForm } from "@/components/contact-form"
 import { siteConfig } from "@/content/site"
-
-const contactDescription =
-  "Contactez Holly Tattoo pour votre projet de tatouage à Saint-Gilles-Croix-de-Vie (Vendée). Studio privé sur rendez-vous."
+import { seoContact } from "@/content/seo"
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: contactDescription,
+  title: seoContact.title,
+  description: seoContact.description,
   alternates: {
     canonical: `${siteConfig.url}/contact`,
   },
@@ -19,8 +17,8 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: `${siteConfig.url}/contact`,
     siteName: siteConfig.name,
-    title: `Contact | ${siteConfig.name}`,
-    description: contactDescription,
+    title: `${seoContact.title} | ${siteConfig.name}`,
+    description: seoContact.description,
     images: [{ url: siteConfig.logo, width: 1200, height: 630, alt: siteConfig.name }],
   },
 }
@@ -37,12 +35,12 @@ export default function ContactPage() {
               <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
                 Rendez-vous
               </span>
-              <h1 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-                Contact
+              <h1 className="font-serif text-4xl font-bold text-foreground md:text-5xl text-balance">
+                Contact — Tatouage à {siteConfig.address.city}
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Partagez votre projet et vos inspirations. Vous recevrez une réponse
-                avec les disponibilités et les prochaines étapes.
+                Partagez votre projet de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).
+                Vous recevrez une réponse avec les disponibilités et les prochaines étapes.
               </p>
             </div>
 

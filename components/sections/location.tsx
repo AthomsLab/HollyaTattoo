@@ -1,8 +1,9 @@
 import { MapPin, Clock } from "lucide-react"
 import { siteConfig } from "@/content/site"
+import { googleMapsUrl } from "@/content/seo"
 
 export function LocationSection() {
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${siteConfig.geo.lat},${siteConfig.geo.lng}`
+  const mapsUrl = googleMapsUrl(siteConfig.geo.lat, siteConfig.geo.lng)
 
   return (
     <section id="localisation" className="bg-background py-20 lg:py-28">

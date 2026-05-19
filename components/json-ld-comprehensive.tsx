@@ -1,7 +1,9 @@
 import { siteConfig } from "@/content/site"
+import { googleMapsUrl } from "@/content/seo"
 import { buildOpeningHoursSpecificationJsonLd } from "@/lib/schema-opening-hours"
 
 const tattooParlorId = `${siteConfig.url}#tattooParlor`
+const mapsUrl = googleMapsUrl(siteConfig.geo.lat, siteConfig.geo.lng)
 
 export function JsonLdComprehensive() {
   const openingHoursSpecification = buildOpeningHoursSpecificationJsonLd()
@@ -57,6 +59,7 @@ export function JsonLdComprehensive() {
           longitude: siteConfig.geo.lng,
         },
         openingHoursSpecification,
+        hasMap: mapsUrl,
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "Customer Support",

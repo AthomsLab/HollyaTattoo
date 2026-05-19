@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { DM_Sans, Playfair_Display } from "next/font/google"
 import Script from "next/script"
 import { siteConfig } from "@/content/site"
+import { seoHome } from "@/content/seo"
 import { JsonLdComprehensive } from "@/components/json-ld-comprehensive"
 import "./globals.css"
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   title: {
-    default: siteConfig.name + " | Tatoueuse à Saint-Gilles-Croix-de-Vie, Vendée",
+    default: seoHome.title,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: siteConfig.name + " | Tatoueuse à Saint-Gilles-Croix-de-Vie, Vendée",
+    title: seoHome.title,
     description: siteConfig.description,
     images: [{ url: siteConfig.logo, width: 1200, height: 630, alt: siteConfig.name }],
   },

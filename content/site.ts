@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Holly Tattoo",
   url: "https://www.hollyatattoo.fr",
   description:
-    "Tatoueuse à Saint-Gilles-Croix-de-Vie en Vendée (85). Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral.",
+    "Tatouage à Saint-Gilles-Croix-de-Vie (Vendée, 85) : studio Holly Tattoo, tatoueuse fine line, dark-pop et floral. Flashs et projets sur rendez-vous.",
   businessName: "Holly Tattoo",
   artistName: "Holly",
   address: {
