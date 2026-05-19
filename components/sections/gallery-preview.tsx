@@ -15,11 +15,11 @@ export function GalleryPreview() {
             Portfolio
           </span>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-            Apercu du studio
+            Aperçu du studio
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Decouvrez l{"'"}ambiance du studio et quelques realisations.
-            Retrouvez toutes les photos dans la galerie complete.
+            Découvrez l{"'"}ambiance du studio à Saint-Gilles-Croix-de-Vie et quelques réalisations.
+            Retrouvez toutes les photos dans la galerie complète.
           </p>
         </div>
 

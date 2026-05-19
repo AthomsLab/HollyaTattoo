@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Holly Tattoo",
-  url: "https://holly-tattoo.fr",
+  url: "https://www.hollyatattoo.fr",
   description:
     "Tatoueuse à Saint-Gilles-Croix-de-Vie en Vendée (85). Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral.",
   businessName: "Holly Tattoo",

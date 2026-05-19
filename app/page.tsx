@@ -2,8 +2,6 @@ import { Metadata } from "next"
 import { siteConfig } from "@/content/site"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { LocalBusinessJsonLd } from "@/components/json-ld"
-import { JsonLdComprehensive } from "@/components/json-ld-comprehensive"
 import { HeroSection } from "@/components/sections/hero"
 import { AboutSection } from "@/components/sections/about"
 import { StylesSection } from "@/components/sections/styles"
@@ -51,8 +49,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <LocalBusinessJsonLd />
-      <JsonLdComprehensive />
       <SiteHeader />
       <main className="pt-[72px]">
         <HeroSection />

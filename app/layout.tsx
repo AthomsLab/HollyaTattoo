@@ -11,7 +11,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name + " | Tatoueuse en Vendee",
+    default: siteConfig.name + " | Tatoueuse à Saint-Gilles-Croix-de-Vie, Vendée",
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: siteConfig.name + " | Tatoueuse en Vendee",
+    title: siteConfig.name + " | Tatoueuse à Saint-Gilles-Croix-de-Vie, Vendée",
     description: siteConfig.description,
     images: [{ url: siteConfig.logo, width: 1200, height: 630, alt: siteConfig.name }],
   },

@@ -5,10 +5,24 @@ import { SiteFooter } from "@/components/site-footer"
 import { ContactForm } from "@/components/contact-form"
 import { siteConfig } from "@/content/site"
 
+const contactDescription =
+  "Contactez Holly Tattoo pour votre projet de tatouage à Saint-Gilles-Croix-de-Vie (Vendée). Studio privé sur rendez-vous."
+
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Contactez Holly Tattoo pour votre projet de tatouage. Studio privé à Saint-Reverend (Vendée), sur rendez-vous.",
+  description: contactDescription,
+  alternates: {
+    canonical: `${siteConfig.url}/contact`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: `${siteConfig.url}/contact`,
+    siteName: siteConfig.name,
+    title: `Contact | ${siteConfig.name}`,
+    description: contactDescription,
+    images: [{ url: siteConfig.logo, width: 1200, height: 630, alt: siteConfig.name }],
+  },
 }
 
 export default function ContactPage() {

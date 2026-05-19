@@ -32,8 +32,8 @@ export function HeroSection() {
             Studio &middot; {siteConfig.address.city}
           </span>
           <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
-            Votre tatouage, dans un cadre{" "}
-            <span className="text-primary">calme et soigné</span>
+            Tatouage à {siteConfig.address.city} :{" "}
+            <span className="text-primary">tatoueuse</span>, cadre calme et soigné
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
             Studio de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).

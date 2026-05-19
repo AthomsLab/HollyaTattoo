@@ -15,7 +15,7 @@ export function LocationSection() {
             Localisation
           </span>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-            Ou nous trouver
+            Où nous trouver
           </h2>
         </div>
 
@@ -28,7 +28,7 @@ export function LocationSection() {
               height="400"
               className="border-0"
               loading="lazy"
-              title="Carte du studio Holly Tattoo a Saint-Gilles-Croix-de-Vie"
+              title="Carte du studio Holly Tattoo à Saint-Gilles-Croix-de-Vie"
               aria-label="Carte interactive montrant la localisation du studio"
             />
             {/* Pink marker overlay centered on the studio */}

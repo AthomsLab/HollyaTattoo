@@ -32,8 +32,11 @@ export function AboutSection() {
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                Je vous accueille dans mon studio à{" "}
-                {siteConfig.address.city} ({siteConfig.address.department}), un espace calme
+                Pour un{" "}
+                <strong className="font-medium text-foreground">
+                  tatouage à {siteConfig.address.city}
+                </strong>
+                , je vous accueille dans mon studio ({siteConfig.address.department}), un espace calme
                 et soigné, pensé pour que chaque séance se déroule dans les meilleures conditions.
               </p>
               <p>

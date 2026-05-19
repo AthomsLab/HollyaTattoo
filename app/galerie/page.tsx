@@ -3,11 +3,26 @@ import Image from "next/image"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { galleryImages } from "@/content/gallery"
+import { siteConfig } from "@/content/site"
+
+const galleryDescription =
+  "Réalisations et ambiance du studio Holly Tattoo à Saint-Gilles-Croix-de-Vie (Vendée). Tatouage fine line, blackwork, floral."
 
 export const metadata: Metadata = {
   title: "Galerie",
-  description:
-    "Decouvrez les realisations et l'ambiance du studio Holly Tattoo a Saint-Reverend (Vendee). Fine line, blackwork, floral.",
+  description: galleryDescription,
+  alternates: {
+    canonical: `${siteConfig.url}/galerie`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: `${siteConfig.url}/galerie`,
+    siteName: siteConfig.name,
+    title: `Galerie | ${siteConfig.name}`,
+    description: galleryDescription,
+    images: [{ url: siteConfig.logo, width: 1200, height: 630, alt: siteConfig.name }],
+  },
 }
 
 export default function GaleriePage() {
@@ -26,8 +41,8 @@ export default function GaleriePage() {
                 Galerie
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Realisations et ambiance du studio. Chaque projet est unique
-                et prepare avec soin.
+                Réalisations et ambiance du studio à Saint-Gilles-Croix-de-Vie. Chaque projet est unique
+                et préparé avec soin.
               </p>
             </div>
 
