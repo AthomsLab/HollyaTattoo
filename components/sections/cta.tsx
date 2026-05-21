@@ -8,7 +8,7 @@ export function CtaSection() {
     <section className="bg-foreground py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-4 text-center lg:px-8">
         <h2 className="font-serif text-3xl font-bold text-primary-foreground md:text-4xl">
-          Prete a sauter le pas ?
+          Prêt(e) à sauter le pas ?
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/70">
           Partagez votre projet, vos inspirations et vos questions.
@@ -22,7 +22,7 @@ export function CtaSection() {
             </Link>
           </Button>
           {siteConfig.socials.instagram && (
-            <Button asChild size="lg" className="!bg-black !text-white hover:!bg-white hover:!text-black">
+            <Button asChild size="lg" className="bg-white! text-foreground! hover:bg-white/85!">
               <a
                 href={siteConfig.socials.instagram}
                 target="_blank"

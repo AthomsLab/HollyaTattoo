@@ -13,7 +13,7 @@ export function HeroSection() {
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/10" />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 py-24 lg:flex-row lg:gap-16 lg:px-8">
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 pb-24 pt-6 lg:flex-row lg:gap-16 lg:px-8">
         {/* Text content */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
           {/* Logo */}
@@ -74,6 +74,16 @@ export function HeroSection() {
                   alt="Tatouage félin souriant - chat d'Alice in Wonderland"
                   width={480}
                   height={640}
+                  className="h-auto w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-lg">
+                <Image
+                  src="/images/gallery/cyber_atom.webp"
+                  alt="Tatouage cyber-pop mandala sur la main - design géométrique et futuriste"
+                  width={600}
+                  height={800}
                   className="h-auto w-full object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />

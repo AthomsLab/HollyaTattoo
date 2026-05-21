@@ -52,7 +52,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-[72px]">
+      <main className="pt-[50px]">
         <HeroSection />
         <AboutSection />
         <StylesSection />

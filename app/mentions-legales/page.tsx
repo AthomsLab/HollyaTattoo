@@ -9,6 +9,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
+const legalPublisher = {
+  businessName: "Athoms Lab",
+  address: {
+    street: "9 rue du Maréchal de Lattre de Tassigny",
+    postalCode: "85220",
+    city: "Saint-Révérend",
+    department: "Vendée",
+    country: "France",
+  },
+  email: "athomslab@gmail.com",
+}
+
 export default function MentionsLegales() {
   return (
     <>
@@ -23,11 +35,11 @@ export default function MentionsLegales() {
               <div>
                 <h2 className="mb-2 font-serif text-lg font-semibold text-foreground">Editeur du site</h2>
                 <p>
-                  {siteConfig.businessName}<br />
-                  {siteConfig.address.street}<br />
-                  {siteConfig.address.postalCode} {siteConfig.address.city}<br />
-                  {siteConfig.address.department}, {siteConfig.address.country}<br />
-                  {siteConfig.email && <>Email : {siteConfig.email}</>}
+                  {legalPublisher.businessName}<br />
+                  {legalPublisher.address.street}<br />
+                  {legalPublisher.address.postalCode} {legalPublisher.address.city}<br />
+                  {legalPublisher.address.department}, {legalPublisher.address.country}<br />
+                  Email : {legalPublisher.email}
                 </p>
               </div>
               <div>
