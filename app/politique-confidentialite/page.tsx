@@ -6,7 +6,6 @@ import { siteConfig } from "@/content/site"
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique de confidentialité du site Holly Tattoo.",
-  robots: { index: false, follow: true },
 }
 
 export default function PolitiqueConfidentialite() {

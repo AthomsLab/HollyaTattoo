@@ -6,7 +6,6 @@ import { siteConfig } from "@/content/site"
 export const metadata: Metadata = {
   title: "Mentions legales",
   description: "Mentions legales du site Holly Tattoo.",
-  robots: { index: false, follow: true },
 }
 
 const legalPublisher = {
