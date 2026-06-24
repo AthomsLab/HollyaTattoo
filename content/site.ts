@@ -50,5 +50,5 @@ export const siteConfig = {
         "Motifs floraux et botaniques, du réaliste au stylisé, toujours en finesse.",
     },
   ],
-  logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2017%20fe%CC%81vr.%202026%2C%2019_06_08-s5ad2pE7TwIY0X9gtpo53sHzWJXYPo.png",
+  logo: "/images/holly.png",
 }

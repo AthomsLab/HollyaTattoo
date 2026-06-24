@@ -21,9 +21,9 @@ export function HeroSection() {
             <Image
               src={siteConfig.logo}
               alt="Holly Tattoo logo"
-              width={380}
-              height={190}
-              className="h-auto w-64 md:w-72 lg:w-96"
+              width={570}
+              height={295}
+              className="h-auto w-64 translate-x-4 md:w-72 md:translate-x-6 lg:w-96 lg:translate-x-0"
               sizes="(max-width: 768px) 256px, (max-width: 1024px) 288px, 384px"
               priority
             />
