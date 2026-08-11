@@ -7,11 +7,30 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
+const LOG_TAG = "[HollyContact]"
 const MAX_FILES = 5
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"]
 
 type FormState = "idle" | "sending" | "success" | "error"
+
+type ContactApiSuccess = {
+  success: true
+  debug?: {
+    requestId?: string
+    emailId?: string | null
+  }
+}
+
+type ContactApiError = {
+  error?: string
+  debug?: {
+    requestId?: string
+    reason?: string
+    message?: string
+    resendError?: unknown
+  }
+}
 
 export function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle")
@@ -63,8 +82,14 @@ export function ContactForm() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    console.log(LOG_TAG, "Submit started", {
+      fileCount: files.length,
+      fileNames: files.map((file) => file.name),
+    })
+
     // Honeypot check
     if (formData.get("website")) {
+      console.warn(LOG_TAG, "Honeypot filled — aborting silently")
       setFormState("idle")
       return
     }
@@ -76,6 +101,7 @@ export function ContactForm() {
     if (!formData.get("description")) newErrors.description = "Decrivez votre projet"
 
     if (Object.keys(newErrors).length > 0) {
+      console.warn(LOG_TAG, "Client validation failed", newErrors)
       setErrors(newErrors)
       setFormState("idle")
       return
@@ -86,21 +112,51 @@ export function ContactForm() {
       formData.append("attachments", file)
     })
 
+    const payloadSnapshot = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      descriptionLength: String(formData.get("description") ?? "").length,
+      placement: String(formData.get("placement") ?? ""),
+      size: String(formData.get("size") ?? ""),
+      dates: String(formData.get("dates") ?? ""),
+      attachmentCount: files.length,
+    }
+    console.log(LOG_TAG, "POST /api/contact", payloadSnapshot)
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         body: formData,
       })
 
+      const rawBody: unknown = await res.json().catch((parseError: unknown) => {
+        console.error(LOG_TAG, "Failed to parse JSON response", {
+          status: res.status,
+          parseError,
+        })
+        return null
+      })
+
+      console.log(LOG_TAG, "API response", {
+        ok: res.ok,
+        status: res.status,
+        body: rawBody,
+      })
+
       if (!res.ok) {
-        const data = await res.json()
+        const data = (rawBody ?? {}) as ContactApiError
         throw new Error(data.error || "Erreur lors de l'envoi")
       }
+
+      const data = (rawBody ?? {}) as ContactApiSuccess
+      console.log(LOG_TAG, "Submit success", data.debug ?? null)
 
       setFormState("success")
       form.reset()
       setFiles([])
-    } catch {
+    } catch (error) {
+      console.error(LOG_TAG, "Submit failed", error)
       setFormState("error")
     }
   }
