@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import { Resend, type Attachment } from "resend"
+import { getContactAttachmentsValidationError } from "@/lib/contact-attachments"
+import { isValidContactEmail } from "@/lib/contact-email"
 
 const LOG_TAG = "[HollyContact]"
 
@@ -35,6 +37,58 @@ function checkRateLimit(ip: string): boolean {
 function getFormString(formData: FormData, key: string): string {
   const value = formData.get(key)
   return typeof value === "string" ? value.trim() : ""
+}
+
+type BuiltAttachmentsResult =
+  | { ok: true; attachments: Attachment[] }
+  | { ok: false; error: string }
+
+async function buildResendAttachments(
+  formData: FormData,
+  requestId: string
+): Promise<BuiltAttachmentsResult> {
+  const rawEntries = formData.getAll("attachments")
+  const files = rawEntries.filter((entry): entry is File => entry instanceof File)
+
+  console.log(LOG_TAG, "Building attachments", {
+    requestId,
+    rawCount: rawEntries.length,
+    fileCount: files.length,
+    files: files.map((file) => ({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    })),
+  })
+
+  if (files.length === 0) {
+    return { ok: true, attachments: [] }
+  }
+
+  const validationError = getContactAttachmentsValidationError(files)
+  if (validationError) {
+    return {
+      ok: false,
+      error: validationError,
+    }
+  }
+
+  const attachments: Attachment[] = []
+
+  for (const file of files) {
+    if (file.size <= 0) {
+      continue
+    }
+
+    const content = Buffer.from(await file.arrayBuffer())
+    attachments.push({
+      filename: file.name,
+      content,
+      contentType: file.type,
+    })
+  }
+
+  return { ok: true, attachments }
 }
 
 export async function POST(request: Request) {
@@ -100,25 +154,55 @@ export async function POST(request: Request) {
         hasDescription: Boolean(description),
       })
       return NextResponse.json(
-        { error: "Veuillez remplir les champs obligatoires." },
+        {
+          error: "Veuillez remplir les champs obligatoires.",
+          debug: { requestId, reason: "missing_required_fields" },
+        },
         { status: 400 }
       )
     }
 
     // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
+    if (!isValidContactEmail(email)) {
       console.warn(LOG_TAG, "Validation failed: invalid email", {
         requestId,
         email,
       })
       return NextResponse.json(
-        { error: "Adresse email invalide." },
+        {
+          error: "Adresse email invalide.",
+          debug: { requestId, reason: "invalid_email" },
+        },
         { status: 400 }
       )
     }
 
+    const attachmentsResult = await buildResendAttachments(formData, requestId)
+    if (!attachmentsResult.ok) {
+      console.warn(LOG_TAG, "Attachment validation failed", {
+        requestId,
+        error: attachmentsResult.error,
+      })
+      return NextResponse.json(
+        {
+          error: attachmentsResult.error,
+          debug: { requestId, reason: "invalid_attachments" },
+        },
+        { status: 400 }
+      )
+    }
+
+    const { attachments } = attachmentsResult
+
     // Build email content
+    const attachmentNames =
+      attachments.length > 0
+        ? attachments
+            .map((attachment) => attachment.filename)
+            .filter((filename): filename is string => typeof filename === "string")
+            .join(", ")
+        : "Aucune"
+
     const emailContent = `
 Nouvelle demande de contact - Holly Tattoo
 
@@ -132,6 +216,7 @@ Nouvelle demande de contact - Holly Tattoo
 - Emplacement: ${placement || "Non spécifié"}
 - Taille: ${size || "Non spécifiée"}
 - Dates: ${dates || "À discuter"}
+- Pieces jointes: ${attachmentNames}
 
 Répondre directement à: ${email}
     `.trim()
@@ -156,6 +241,7 @@ Répondre directement à: ${email}
       replyTo: email,
       subject: `Nouvelle demande de tatouage de ${name}`,
       text: emailContent,
+      ...(attachments.length > 0 ? { attachments } : {}),
     }
 
     console.log(LOG_TAG, "Calling Resend emails.send", {
@@ -165,7 +251,8 @@ Répondre directement à: ${email}
       replyTo: payload.replyTo,
       subject: payload.subject,
       textLength: payload.text.length,
-      note: "attachments are accepted by the form but NOT yet sent via Resend",
+      attachmentCount: attachments.length,
+      attachmentNames: attachments.map((attachment) => attachment.filename),
     })
 
     try {
@@ -193,6 +280,7 @@ Répondre directement à: ${email}
         requestId,
         emailId: data?.id ?? null,
         data,
+        attachmentCount: attachments.length,
       })
 
       return NextResponse.json({
@@ -200,6 +288,7 @@ Répondre directement à: ${email}
         debug: {
           requestId,
           emailId: data?.id ?? null,
+          attachmentCount: attachments.length,
         },
       })
     } catch (emailError) {

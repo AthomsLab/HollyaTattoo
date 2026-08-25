@@ -1,24 +1,34 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { Send, Paperclip, X, Loader2 } from "lucide-react"
+import { useMemo, useRef, useState } from "react"
+import { Instagram, Loader2, Mail, Paperclip, Send, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { siteConfig } from "@/content/site"
+import {
+  CONTACT_ATTACHMENTS_HELP_TEXT,
+  CONTACT_MAX_FILES,
+  CONTACT_MAX_TOTAL_ATTACHMENTS_LABEL,
+  getContactAttachmentsValidationError,
+  isContactAcceptedMimeType,
+} from "@/lib/contact-attachments"
+import { isValidContactEmail } from "@/lib/contact-email"
 
 const LOG_TAG = "[HollyContact]"
-const MAX_FILES = 5
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
-const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"]
+const FIELD_ERROR_CLASS_NAME =
+  "border-destructive ring-[3px] ring-destructive/50 focus-visible:border-destructive focus-visible:ring-destructive/50"
 
-type FormState = "idle" | "sending" | "success" | "error"
+type FormState = "idle" | "sending" | "success"
+type SubmitIssue = "none" | "attachments" | "rate_limit" | "service" | "validation"
 
 type ContactApiSuccess = {
   success: true
   debug?: {
     requestId?: string
     emailId?: string | null
+    attachmentCount?: number
   }
 }
 
@@ -32,52 +42,151 @@ type ContactApiError = {
   }
 }
 
+function AlternateContactLinks() {
+  return (
+    <div className="mt-3 flex flex-col gap-2">
+      <a
+        href={`mailto:${siteConfig.email}`}
+        className="inline-flex items-center gap-2 text-primary underline-offset-4 hover:underline"
+      >
+        <Mail className="h-4 w-4" />
+        {siteConfig.email}
+      </a>
+      {siteConfig.socials.instagram && (
+        <a
+          href={siteConfig.socials.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-primary underline-offset-4 hover:underline"
+        >
+          <Instagram className="h-4 w-4" />
+          Instagram @hollya_tattoo
+        </a>
+      )}
+    </div>
+  )
+}
+
 export function ContactForm() {
   const [formState, setFormState] = useState<FormState>("idle")
+  const [submitIssue, setSubmitIssue] = useState<SubmitIssue>("none")
   const [files, setFiles] = useState<File[]>([])
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [fileWarning, setFileWarning] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!e.target.files) return
-    const newFiles = Array.from(e.target.files)
-    const validFiles: File[] = []
-    const fileErrors: string[] = []
+  const attachmentsError = useMemo(
+    () => getContactAttachmentsValidationError(files),
+    [files]
+  )
+  const hasEmailError = Boolean(errors.email)
+  const hasNameError = Boolean(errors.name)
+  const hasDescriptionError = Boolean(errors.description)
+  const isSubmitDisabled =
+    formState === "sending" || Boolean(attachmentsError) || hasEmailError
 
-    for (const file of newFiles) {
-      if (!ACCEPTED_TYPES.includes(file.type)) {
-        fileErrors.push(`${file.name} : format non accepte`)
-        continue
+  function getEmailFieldError(value: string): string | null {
+    const trimmed = value.trim()
+    if (!trimmed) return "L'email est requis"
+    if (!isValidContactEmail(trimmed)) return "Adresse email invalide."
+    return null
+  }
+
+  function handleEmailBlur(e: React.FocusEvent<HTMLInputElement>) {
+    const emailError = getEmailFieldError(e.target.value)
+    setErrors((prev) => {
+      const next = { ...prev }
+      if (emailError) {
+        next.email = emailError
+      } else {
+        delete next.email
       }
-      if (file.size > MAX_FILE_SIZE) {
-        fileErrors.push(`${file.name} : taille max 5 Mo`)
-        continue
-      }
-      validFiles.push(file)
-    }
+      return next
+    })
+  }
 
-    const total = [...files, ...validFiles].slice(0, MAX_FILES)
-    setFiles(total)
-
-    if (fileErrors.length > 0) {
-      setErrors((prev) => ({ ...prev, files: fileErrors.join(", ") }))
-    } else {
+  function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
+    // Clear the blur error as soon as the value becomes valid again.
+    if (!errors.email) return
+    const emailError = getEmailFieldError(e.target.value)
+    if (!emailError) {
       setErrors((prev) => {
         const next = { ...prev }
-        delete next.files
+        delete next.email
         return next
       })
     }
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) return
+    const newFiles = Array.from(e.target.files)
+    const acceptedFiles: File[] = []
+    const rejectedMessages: string[] = []
+
+    for (const file of newFiles) {
+      if (!isContactAcceptedMimeType(file.type)) {
+        rejectedMessages.push(`${file.name} : format non accepte`)
+        continue
+      }
+      const singleFileError = getContactAttachmentsValidationError([file])
+      if (singleFileError) {
+        rejectedMessages.push(singleFileError)
+        continue
+      }
+      acceptedFiles.push(file)
+    }
+
+    const nextFiles = [...files, ...acceptedFiles].slice(0, CONTACT_MAX_FILES)
+    const totalError = getContactAttachmentsValidationError(nextFiles)
+
+    if (totalError) {
+      // Keep current valid selection; only warn that the new files were refused.
+      setFileWarning(totalError)
+      e.target.value = ""
+      return
+    }
+
+    setFiles(nextFiles)
+    if (submitIssue === "attachments") {
+      setSubmitIssue("none")
+    }
+    setErrors((prev) => {
+      const next = { ...prev }
+      delete next.files
+      return next
+    })
+    setFileWarning(
+      rejectedMessages.length > 0 ? rejectedMessages.join(", ") : null
+    )
+    e.target.value = ""
+  }
+
   function removeFile(index: number) {
-    setFiles((prev) => prev.filter((_, i) => i !== index))
+    setFiles((prev) => {
+      const next = prev.filter((_, i) => i !== index)
+      const nextError = getContactAttachmentsValidationError(next)
+      setErrors((current) => {
+        const updated = { ...current }
+        if (nextError) {
+          updated.files = nextError
+        } else {
+          delete updated.files
+        }
+        return updated
+      })
+      if (!nextError) {
+        setFileWarning(null)
+        setSubmitIssue((current) =>
+          current === "attachments" ? "none" : current
+        )
+      }
+      return next
+    })
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setFormState("sending")
-    setErrors({})
 
     const form = e.currentTarget
     const formData = new FormData(form)
@@ -90,22 +199,34 @@ export function ContactForm() {
     // Honeypot check
     if (formData.get("website")) {
       console.warn(LOG_TAG, "Honeypot filled — aborting silently")
-      setFormState("idle")
       return
     }
 
     // Validation
     const newErrors: Record<string, string> = {}
+    const emailValue = String(formData.get("email") ?? "").trim()
     if (!formData.get("name")) newErrors.name = "Le nom est requis"
-    if (!formData.get("email")) newErrors.email = "L'email est requis"
+    const emailError = getEmailFieldError(emailValue)
+    if (emailError) newErrors.email = emailError
     if (!formData.get("description")) newErrors.description = "Decrivez votre projet"
+
+    const currentAttachmentsError = getContactAttachmentsValidationError(files)
+    if (currentAttachmentsError) {
+      newErrors.files = currentAttachmentsError
+    }
 
     if (Object.keys(newErrors).length > 0) {
       console.warn(LOG_TAG, "Client validation failed", newErrors)
       setErrors(newErrors)
+      setSubmitIssue(currentAttachmentsError ? "attachments" : "none")
       setFormState("idle")
       return
     }
+
+    setFormState("sending")
+    setSubmitIssue("none")
+    setErrors({})
+    setFileWarning(null)
 
     // Add files to FormData
     files.forEach((file) => {
@@ -146,7 +267,54 @@ export function ContactForm() {
 
       if (!res.ok) {
         const data = (rawBody ?? {}) as ContactApiError
-        throw new Error(data.error || "Erreur lors de l'envoi")
+        const apiError = data.error || "Erreur lors de l'envoi"
+        const reason = data.debug?.reason
+
+        if (res.status === 400 && reason === "invalid_attachments") {
+          setErrors({
+            files:
+              data.error ||
+              `Pieces jointes trop volumineuses (max ${CONTACT_MAX_FILES} fichiers, ${CONTACT_MAX_TOTAL_ATTACHMENTS_LABEL} au total).`,
+          })
+          setSubmitIssue("attachments")
+          setFormState("idle")
+          return
+        }
+
+        if (res.status === 400 && reason === "invalid_email") {
+          setErrors({ email: apiError })
+          setSubmitIssue("none")
+          setFormState("idle")
+          return
+        }
+
+        if (res.status === 400 && reason === "missing_required_fields") {
+          setErrors({
+            name: "Verifiez les champs obligatoires.",
+            email: "Verifiez les champs obligatoires.",
+            description: "Verifiez les champs obligatoires.",
+          })
+          setSubmitIssue("validation")
+          setFormState("idle")
+          return
+        }
+
+        // Any other 400: show the API error text as form validation, not "service down"
+        if (res.status === 400) {
+          console.warn(LOG_TAG, "API validation error", { apiError, reason })
+          setSubmitIssue("validation")
+          setErrors({ form: apiError })
+          setFormState("idle")
+          return
+        }
+
+        if (res.status === 429) {
+          setSubmitIssue("rate_limit")
+          setFormState("idle")
+          return
+        }
+
+        throw new Error(apiError)
       }
 
       const data = (rawBody ?? {}) as ContactApiSuccess
@@ -157,7 +325,8 @@ export function ContactForm() {
       setFiles([])
     } catch (error) {
       console.error(LOG_TAG, "Submit failed", error)
-      setFormState("error")
+      setSubmitIssue("service")
+      setFormState("idle")
     }
   }
 
@@ -196,14 +365,31 @@ export function ContactForm() {
           <Label htmlFor="name">
             Nom <span className="text-destructive">*</span>
           </Label>
-          <Input id="name" name="name" required placeholder="Votre nom" />
+          <Input
+            id="name"
+            name="name"
+            required
+            placeholder="Votre nom"
+            aria-invalid={hasNameError}
+            className={hasNameError ? FIELD_ERROR_CLASS_NAME : undefined}
+          />
           {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">
             Email <span className="text-destructive">*</span>
           </Label>
-          <Input id="email" name="email" type="email" required placeholder="votre@email.fr" />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="votre@email.fr"
+            aria-invalid={hasEmailError}
+            onBlur={handleEmailBlur}
+            onChange={handleEmailChange}
+            className={hasEmailError ? FIELD_ERROR_CLASS_NAME : undefined}
+          />
           {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
         </div>
       </div>
@@ -225,6 +411,8 @@ export function ContactForm() {
           required
           rows={4}
           placeholder="Decrivez votre idee de tatouage, le style souhaite, l'emplacement..."
+          aria-invalid={hasDescriptionError}
+          className={hasDescriptionError ? FIELD_ERROR_CLASS_NAME : undefined}
         />
         {errors.description && <p className="text-xs text-destructive">{errors.description}</p>}
       </div>
@@ -250,13 +438,11 @@ export function ContactForm() {
       {/* File upload */}
       <div className="flex flex-col gap-2">
         <Label>Inspirations (optionnel)</Label>
-        <p className="text-xs text-muted-foreground">
-          JPG, PNG, WebP ou PDF. Max 5 fichiers, 5 Mo chacun.
-        </p>
+        <p className="text-xs text-muted-foreground">{CONTACT_ATTACHMENTS_HELP_TEXT}</p>
         <div className="flex flex-wrap gap-2">
           {files.map((file, i) => (
             <div
-              key={i}
+              key={`${file.name}-${file.size}-${i}`}
               className="flex items-center gap-2 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs text-foreground"
             >
               <span className="max-w-[120px] truncate">{file.name}</span>
@@ -265,7 +451,7 @@ export function ContactForm() {
               </button>
             </div>
           ))}
-          {files.length < MAX_FILES && (
+          {files.length < CONTACT_MAX_FILES && (
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
@@ -284,21 +470,64 @@ export function ContactForm() {
           className="hidden"
           onChange={handleFileChange}
         />
-        {errors.files && <p className="text-xs text-destructive">{errors.files}</p>}
+        {(errors.files || attachmentsError) && (
+          <p className="text-xs text-destructive">{errors.files || attachmentsError}</p>
+        )}
+        {fileWarning && !errors.files && !attachmentsError && (
+          <p className="text-xs text-muted-foreground">{fileWarning}</p>
+        )}
       </div>
 
-      {/* Error message */}
-      {formState === "error" && (
-        <p className="rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
-          Une erreur est survenue. Veuillez reessayer ou contacter le studio directement.
-        </p>
+      {submitIssue === "attachments" && (
+        <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-foreground">
+          <p className="font-medium text-destructive">Pieces jointes trop volumineuses</p>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            {CONTACT_ATTACHMENTS_HELP_TEXT} Compressez vos images ou retirez des fichiers pour
+            pouvoir envoyer le formulaire.
+          </p>
+        </div>
+      )}
+
+      {submitIssue === "validation" && (
+        <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-foreground">
+          <p className="font-medium text-destructive">Formulaire incomplet ou invalide</p>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            {errors.form ||
+              "Merci de verifier les informations saisies avant de renvoyer votre demande."}
+          </p>
+        </div>
+      )}
+
+      {submitIssue === "rate_limit" && (
+        <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-foreground">
+          <p className="font-medium text-destructive">Trop de demandes pour le moment</p>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Vous avez atteint la limite d&apos;envois. Reessayez un peu plus tard, ou contactez-nous
+            directement :
+          </p>
+          <AlternateContactLinks />
+        </div>
+      )}
+
+      {submitIssue === "service" && (
+        <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-foreground">
+          <p className="font-medium text-destructive">
+            Probleme temporaire avec l&apos;envoi du formulaire
+          </p>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Le service d&apos;envoi d&apos;emails ne repond pas correctement pour le moment.
+            Votre demande n&apos;a peut-etre pas ete transmise. En attendant, contactez-nous
+            directement :
+          </p>
+          <AlternateContactLinks />
+        </div>
       )}
 
       {/* Submit */}
       <Button
         type="submit"
         size="lg"
-        disabled={formState === "sending"}
+        disabled={isSubmitDisabled}
         className="bg-primary text-primary-foreground hover:bg-primary/90"
       >
         {formState === "sending" ? (
@@ -313,6 +542,16 @@ export function ContactForm() {
           </>
         )}
       </Button>
+      {attachmentsError && (
+        <p className="text-xs text-muted-foreground">
+          Corrigez les pieces jointes pour reactiver l&apos;envoi.
+        </p>
+      )}
+      {hasEmailError && !attachmentsError && (
+        <p className="text-xs text-muted-foreground">
+          Corrigez l&apos;adresse email pour reactiver l&apos;envoi.
+        </p>
+      )}
     </form>
   )
 }
