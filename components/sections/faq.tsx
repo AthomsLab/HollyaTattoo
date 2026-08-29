@@ -18,7 +18,7 @@ export function FaqSection() {
             Questions fréquentes
           </span>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-            Tatouage à {siteConfig.address.city}
+            {siteConfig.tattooLocationHeading}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
             Tout ce qu&apos;il faut savoir avant de réserver votre séance au studio Holly Tattoo en{" "}
@@ -41,7 +41,7 @@ export function FaqSection() {
         <p className="mt-10 text-center text-sm text-muted-foreground">
           Une autre question ?{" "}
           <Link href="/contact" className="font-medium text-primary underline-offset-4 hover:underline">
-            Contactez le studio pour un tatouage à {siteConfig.address.city}
+            Contactez le studio
           </Link>
         </p>
       </div>

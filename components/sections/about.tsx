@@ -11,7 +11,7 @@ export function AboutSection() {
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
                 src="/images/studioStGilles.webp"
-                alt="Studio Holly Tattoo à Saint-Gilles-Croix-de-Vie avec présentoir de flashs"
+                alt="Studio Holly Tattoo avec présentoir de flashs"
                 width={480}
                 height={600}
                 className="h-auto max-h-[500px] w-full max-w-md object-cover"

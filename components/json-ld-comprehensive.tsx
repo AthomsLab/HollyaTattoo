@@ -3,7 +3,15 @@ import { googleMapsUrl } from "@/content/seo"
 import { buildOpeningHoursSpecificationJsonLd } from "@/lib/schema-opening-hours"
 
 const tattooParlorId = `${siteConfig.url}#tattooParlor`
-const mapsUrl = googleMapsUrl(siteConfig.geo.lat, siteConfig.geo.lng)
+const mapsUrl = googleMapsUrl(siteConfig.mapsQuery)
+
+const postalAddress = {
+  "@type": "PostalAddress" as const,
+  addressLocality: siteConfig.address.city,
+  addressRegion: siteConfig.address.department,
+  postalCode: siteConfig.address.postalCode,
+  addressCountry: siteConfig.address.country,
+}
 
 export function JsonLdComprehensive() {
   const openingHoursSpecification = buildOpeningHoursSpecificationJsonLd()
@@ -21,14 +29,7 @@ export function JsonLdComprehensive() {
         email: siteConfig.email,
         telephone: siteConfig.phone,
         description: siteConfig.description,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          addressLocality: siteConfig.address.city,
-          addressRegion: siteConfig.address.department,
-          postalCode: siteConfig.address.postalCode,
-          addressCountry: siteConfig.address.country,
-        },
+        address: postalAddress,
         geo: {
           "@type": "GeoCoordinates",
           latitude: siteConfig.geo.lat,
@@ -45,14 +46,7 @@ export function JsonLdComprehensive() {
         telephone: siteConfig.phone,
         email: siteConfig.email,
         url: siteConfig.url,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          addressLocality: siteConfig.address.city,
-          addressRegion: siteConfig.address.department,
-          postalCode: siteConfig.address.postalCode,
-          addressCountry: siteConfig.address.country,
-        },
+        address: postalAddress,
         geo: {
           "@type": "GeoCoordinates",
           latitude: siteConfig.geo.lat,
@@ -82,6 +76,10 @@ export function JsonLdComprehensive() {
           {
             "@type": "City",
             name: siteConfig.address.city,
+          },
+          {
+            "@type": "City",
+            name: siteConfig.nearbySeoCity,
           },
           {
             "@type": "AdministrativeArea",

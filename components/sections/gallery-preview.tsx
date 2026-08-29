@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { galleryImages } from "@/content/gallery"
+import { siteConfig } from "@/content/site"
 import { Button } from "@/components/ui/button"
 
 export function GalleryPreview() {
@@ -18,7 +19,7 @@ export function GalleryPreview() {
             Aperçu du studio
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Découvrez l{"'"}ambiance du studio à Saint-Gilles-Croix-de-Vie et quelques réalisations.
+            Découvrez l{"'"}ambiance du studio à {siteConfig.address.city} et quelques réalisations.
             Retrouvez toutes les photos dans la galerie complète.
           </p>
         </div>

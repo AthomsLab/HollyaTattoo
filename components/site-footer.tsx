@@ -47,7 +47,7 @@ export function SiteFooter() {
                 Contact
               </Link>
               <Link href="/#faq" className="text-sm text-muted-foreground hover:text-primary">
-                Tatouage {siteConfig.address.city}
+                {siteConfig.tattooLocationHeading}
               </Link>
               <Link href="/mentions-legales" className="text-sm text-muted-foreground hover:text-primary">
                 Mentions légales

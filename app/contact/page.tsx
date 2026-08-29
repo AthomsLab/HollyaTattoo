@@ -36,10 +36,10 @@ export default function ContactPage() {
                 Rendez-vous
               </span>
               <h1 className="font-serif text-4xl font-bold text-foreground md:text-5xl text-balance">
-                Contact — Tatouage à {siteConfig.address.city}
+                Contact — {siteConfig.tattooLocationHeading}
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Partagez votre projet de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).
+                Partagez votre projet de tatouage à {siteConfig.locationPhrase} ({siteConfig.address.department}).
                 Vous recevrez une réponse avec les disponibilités et les prochaines étapes.
               </p>
             </div>

@@ -3,17 +3,21 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { Button } from "@/components/ui/button"
+import { RelocationNotice } from "@/components/sections/relocation-notice"
 
 export function HeroSection() {
   return (
     <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-background">
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/5" />
+        <div className="absolute top-52 -right-32 h-96 w-96 rounded-full bg-primary/5" />
+        <div className="absolute -top-12 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5" />
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/10" />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 pb-24 pt-6 lg:flex-row lg:gap-16 lg:px-8">
+      <div className="relative mx-auto max-w-6xl px-4 pt-6 lg:px-8">
+        <RelocationNotice />
+        <div className="flex flex-col items-center gap-12 pb-24 lg:flex-row lg:gap-16">
         {/* Text content */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
           {/* Logo */}
@@ -32,7 +36,7 @@ export function HeroSection() {
             Studio &middot; {siteConfig.address.city}
           </span>
           <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
-            Tatouage à {siteConfig.address.city} :{" "}
+            {siteConfig.tattooLocationHeading} :{" "}
             <span className="text-primary">tatoueuse</span>, cadre calme et soigné
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -112,6 +116,7 @@ export function HeroSection() {
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         {/* Gold decorative ring */}

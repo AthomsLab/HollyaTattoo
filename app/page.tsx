@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "tatoueuse",
     "Vendée",
     "Saint-Gilles-Croix-de-Vie",
+    "Saint-Révérend",
     "dark-pop",
     "fine line",
     "floral",

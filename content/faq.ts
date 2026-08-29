@@ -8,7 +8,7 @@ export type FaqItem = {
 export const homeFaqs: FaqItem[] = [
   {
     question: `Où faire un tatouage à ${siteConfig.address.city} ?`,
-    answer: `Le studio Holly Tattoo est situé au ${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.city} (${siteConfig.address.department}). Studio privé sur rendez-vous, accessible depuis toute la Vendée littorale.`,
+    answer: `Le studio Holly Tattoo est situé à ${siteConfig.address.city} (${siteConfig.address.postalCode} - ${siteConfig.address.department}). Studio privé sur rendez-vous, accessible depuis toute la Vendée littorale.`,
   },
   {
     question: "Quels styles de tatouage proposez-vous ?",
@@ -26,12 +26,13 @@ export const homeFaqs: FaqItem[] = [
       "Oui, des flashs sont proposés sans rendez-vous selon les disponibilités du moment. Suivez le studio sur Instagram pour découvrir les créations disponibles.",
   },
   {
-    question: `Le studio est-il ouvert le week-end à ${siteConfig.address.city} ?`,
+    question: "Le studio est-il ouvert le week-end ?",
     answer:
       "Le studio est ouvert du mardi au samedi (créneaux matin et après-midi). Fermé le lundi et le dimanche. Les horaires détaillés sont indiqués sur cette page.",
   },
   {
     question: "Quelle est l'adresse exacte du studio ?",
-    answer: `${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.city}, ${siteConfig.address.department}. L'adresse précise est confirmée lors de la validation du rendez-vous.`,
+    answer:
+      "L'adresse précise est confirmée lors de la validation du rendez-vous.",
   },
 ]

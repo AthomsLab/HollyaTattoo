@@ -3,7 +3,9 @@ import { siteConfig } from "@/content/site"
 import { googleMapsUrl } from "@/content/seo"
 
 export function LocationSection() {
-  const mapsUrl = googleMapsUrl(siteConfig.geo.lat, siteConfig.geo.lng)
+  const mapsUrl = googleMapsUrl(siteConfig.mapsQuery)
+  const mapBboxPaddingLng = 0.025
+  const mapBboxPaddingLat = 0.015
 
   return (
     <section id="localisation" className="bg-background py-20 lg:py-28">
@@ -21,12 +23,12 @@ export function LocationSection() {
           {/* Map */}
           <div className="flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
-              src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - 0.01},${siteConfig.geo.lat - 0.006},${siteConfig.geo.lng + 0.01},${siteConfig.geo.lat + 0.006}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - mapBboxPaddingLng},${siteConfig.geo.lat - mapBboxPaddingLat},${siteConfig.geo.lng + mapBboxPaddingLng},${siteConfig.geo.lat + mapBboxPaddingLat}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
               width="100%"
               height="400"
               className="border-0"
               loading="lazy"
-              title="Carte du studio Holly Tattoo à Saint-Gilles-Croix-de-Vie"
+              title={`Carte du studio Holly Tattoo à ${siteConfig.address.city}`}
               aria-label="Carte interactive montrant la localisation du studio"
             />
           </div>
@@ -39,7 +41,6 @@ export function LocationSection() {
                 <h3 className="font-serif text-lg font-semibold text-foreground">Adresse</h3>
               </div>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {siteConfig.address.street}<br />
                 {siteConfig.address.postalCode} {siteConfig.address.city}<br />
                 {siteConfig.address.department}, {siteConfig.address.region}
               </p>
