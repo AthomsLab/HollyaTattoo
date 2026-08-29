@@ -64,6 +64,13 @@ export const galleryImages: GalleryImage[] = [
     height: 800,
   },
   {
+    src: "/images/gallery/studio_accueil.jpg",
+    alt: "Espace accueil du studio Holly Tattoo à Saint-Révérend, miroir doré",
+    tags: ["studio"],
+    width: 960,
+    height: 1280,
+  },
+  {
     src: "/images/gallery/japan_btc.webp",
     alt: "Tatouage personnage japonais avec bun ears - style dark-pop",
     tags: ["dark-pop", "portrait"],
@@ -118,6 +125,13 @@ export const galleryImages: GalleryImage[] = [
     tags: ["paysage", "fine line"],
     width: 600,
     height: 800,
+  },
+  {
+    src: "/images/gallery/studio_plantes.jpg",
+    alt: "Studio Holly Tattoo à Saint-Révérend, espace de travail avec plantes",
+    tags: ["studio"],
+    width: 960,
+    height: 1280,
   },
   {
     src: "/images/gallery/butterfly.webp",

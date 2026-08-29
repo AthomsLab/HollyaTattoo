@@ -10,10 +10,10 @@ export function AboutSection() {
           <div className="relative flex-shrink-0">
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
-                src="/images/studioStGilles.webp"
-                alt="Studio Holly Tattoo avec présentoir de flashs"
+                src="/images/studioStReverend.jpg"
+                alt="Studio Holly Tattoo à Saint-Révérend, vue d'ensemble avec table de soin"
                 width={480}
-                height={600}
+                height={640}
                 className="h-auto max-h-[500px] w-full max-w-md object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
