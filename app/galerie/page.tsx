@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { galleryImages } from "@/content/gallery"
 import { siteConfig } from "@/content/site"
 
-const galleryDescription = `Réalisations et ambiance du studio Holly Tattoo à ${siteConfig.address.city} (Vendée). Tatouage fine line, blackwork, floral.`
+const galleryDescription = `Réalisations et ambiance du studio Holly Tattoo ${siteConfig.cityLocative} (Vendée). Tatouage fine line, blackwork, floral.`
 
 export const metadata: Metadata = {
   title: "Galerie",
@@ -40,7 +40,7 @@ export default function GaleriePage() {
                 Galerie
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Réalisations et ambiance du studio à {siteConfig.address.city}. Chaque projet est unique
+                Réalisations et ambiance du studio {siteConfig.cityLocative}. Chaque projet est unique
                 et préparé avec soin.
               </p>
             </div>

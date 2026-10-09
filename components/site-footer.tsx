@@ -13,7 +13,7 @@ export function SiteFooter() {
               {siteConfig.businessName}
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Studio de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).
+              Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
               Flashs sans rendez-vous, projets personnalisés sur rendez-vous.
             </p>
             <div className="flex gap-3 pt-2">
@@ -47,7 +47,7 @@ export function SiteFooter() {
                 Contact
               </Link>
               <Link href="/#faq" className="text-sm text-muted-foreground hover:text-primary">
-                {siteConfig.tattooLocationHeading}
+                Questions fréquentes
               </Link>
               <Link href="/mentions-legales" className="text-sm text-muted-foreground hover:text-primary">
                 Mentions légales
@@ -67,7 +67,7 @@ export function SiteFooter() {
             &copy; {new Date().getFullYear()} {siteConfig.businessName}. Tous droits réservés.
           </p>
           <p>
-            Studio à {siteConfig.address.city} ({siteConfig.address.postalCode}) — {siteConfig.address.department}
+            Studio {siteConfig.cityLocative} ({siteConfig.address.postalCode}) — {siteConfig.address.department}
           </p>
         </div>
       </div>

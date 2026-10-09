@@ -15,10 +15,10 @@ export function FaqSection() {
       <div className="mx-auto max-w-3xl px-4 lg:px-8">
         <div className="mb-12 text-center">
           <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
-            Questions fréquentes
+            FAQ
           </span>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-            {siteConfig.tattooLocationHeading}
+            Questions fréquentes
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
             Tout ce qu&apos;il faut savoir avant de réserver votre séance au studio Holly Tattoo en{" "}

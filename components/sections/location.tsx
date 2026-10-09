@@ -4,8 +4,8 @@ import { googleMapsUrl } from "@/content/seo"
 
 export function LocationSection() {
   const mapsUrl = googleMapsUrl(siteConfig.mapsQuery)
-  const mapBboxPaddingLng = 0.025
-  const mapBboxPaddingLat = 0.015
+  const mapBboxPaddingLng = 0.008
+  const mapBboxPaddingLat = 0.005
 
   return (
     <section id="localisation" className="bg-background py-20 lg:py-28">
@@ -28,7 +28,7 @@ export function LocationSection() {
               height="400"
               className="border-0"
               loading="lazy"
-              title={`Carte du studio Holly Tattoo à ${siteConfig.address.city}`}
+              title={`Carte du studio Holly Tattoo ${siteConfig.cityLocative}`}
               aria-label="Carte interactive montrant la localisation du studio"
             />
           </div>
@@ -41,6 +41,7 @@ export function LocationSection() {
                 <h3 className="font-serif text-lg font-semibold text-foreground">Adresse</h3>
               </div>
               <p className="text-sm leading-relaxed text-muted-foreground">
+                {siteConfig.address.street}<br />
                 {siteConfig.address.postalCode} {siteConfig.address.city}<br />
                 {siteConfig.address.department}, {siteConfig.address.region}
               </p>

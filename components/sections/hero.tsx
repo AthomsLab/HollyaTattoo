@@ -3,7 +3,6 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { Button } from "@/components/ui/button"
-import { RelocationNotice } from "@/components/sections/relocation-notice"
 
 export function HeroSection() {
   return (
@@ -16,7 +15,6 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pt-6 lg:px-8">
-        <RelocationNotice />
         <div className="flex flex-col items-center gap-12 pb-24 lg:flex-row lg:gap-16">
         {/* Text content */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
@@ -36,11 +34,11 @@ export function HeroSection() {
             Studio &middot; {siteConfig.address.city}
           </span>
           <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
-            {siteConfig.tattooLocationHeading} :{" "}
-            <span className="text-primary">tatoueuse</span>, cadre calme et soigné
+            <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
+            Cadre calme et soigné
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-            Studio de tatouage à {siteConfig.address.city} ({siteConfig.address.department}).
+            Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
             Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
             chaque projet est préparé avec soin.
           </p>

@@ -11,7 +11,7 @@ export function AboutSection() {
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
                 src="/images/studioStReverend.jpg"
-                alt="Studio Holly Tattoo à Saint-Révérend, vue d'ensemble avec table de soin"
+                alt="Studio Holly Tattoo, vue d'ensemble avec table de soin"
                 width={480}
                 height={640}
                 className="h-auto max-h-[500px] w-full max-w-md object-cover"
@@ -34,7 +34,7 @@ export function AboutSection() {
               <p>
                 Pour un{" "}
                 <strong className="font-medium text-foreground">
-                  tatouage à {siteConfig.address.city}
+                  tatouage {siteConfig.cityLocative}
                 </strong>
                 , je vous accueille dans mon studio ({siteConfig.address.department}), un espace calme
                 et soigné, pensé pour que chaque séance se déroule dans les meilleures conditions.

@@ -65,7 +65,7 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     src: "/images/gallery/studio_accueil.jpg",
-    alt: "Espace accueil du studio Holly Tattoo à Saint-Révérend, miroir doré",
+    alt: "Espace accueil du studio Holly Tattoo, miroir doré",
     tags: ["studio"],
     width: 960,
     height: 1280,
@@ -128,7 +128,7 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     src: "/images/gallery/studio_plantes.jpg",
-    alt: "Studio Holly Tattoo à Saint-Révérend, espace de travail avec plantes",
+    alt: "Studio Holly Tattoo, espace de travail avec plantes",
     tags: ["studio"],
     width: 960,
     height: 1280,

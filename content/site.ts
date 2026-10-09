@@ -1,4 +1,5 @@
 export type SiteAddress = {
+  street: string
   city: string
   postalCode: string
   department: string
@@ -27,14 +28,6 @@ export type SiteSocials = {
   facebook: string
 }
 
-export type RelocationNotice = {
-  label: string
-  currentPeriod: string
-  currentPlace: string
-  nextPeriod: string
-  nextPlace: string
-}
-
 export type SiteConfig = {
   name: string
   url: string
@@ -43,9 +36,9 @@ export type SiteConfig = {
   artistName: string
   address: SiteAddress
   nearbySeoCity: string
+  cityLocative: string
   locationPhrase: string
   tattooLocationHeading: string
-  relocationNotice: RelocationNotice
   mapsQuery: string
   phone: string
   email: string
@@ -60,29 +53,23 @@ export const siteConfig: SiteConfig = {
   name: "Holly Tattoo",
   url: "https://www.hollyatattoo.fr",
   description:
-    "Tatouage à Saint-Gilles-Croix-de-Vie (Vendée, 85) : studio Holly Tattoo à Saint-Révérend, à 10 minutes. Tatoueuse fine line, dark-pop et floral. Flashs et projets sur rendez-vous.",
+    "Tatouage à Saint-Gilles-Croix-de-Vie (Vendée, 85) : studio Holly Tattoo au Fenouiller, à 10 minutes. Tatoueuse fine line, dark-pop et floral. Flashs et projets sur rendez-vous.",
   businessName: "Holly Tattoo",
   artistName: "Holly",
   address: {
-    city: "Saint-Révérend",
-    postalCode: "85220",
+    street: "15 Rue des Carrières",
+    city: "Le Fenouiller",
+    postalCode: "85800",
     department: "Vendée",
     region: "Pays de la Loire",
     country: "France",
   },
   nearbySeoCity: "Saint-Gilles-Croix-de-Vie",
-  locationPhrase: "Saint-Révérend, à 10 minutes de Saint-Gilles-Croix-de-Vie",
+  cityLocative: "au Fenouiller",
+  locationPhrase: "au Fenouiller, à 10 minutes de Saint-Gilles-Croix-de-Vie",
   tattooLocationHeading:
-    "Tatouage à Saint-Révérend, à 10 minutes de Saint-Gilles-Croix-de-Vie",
-  relocationNotice: {
-    label: "Changement d'adresse",
-    currentPeriod: "Je vous accueille pendant le mois de Septembre à",
-    currentPlace: "Saint-Révérend",
-    nextPeriod:
-      "Avant de vous accueillir à partir du 1er octobre sur",
-    nextPlace: "Le Fenouiller",
-  },
-  mapsQuery: "Saint-Révérend, Vendée",
+    "Tatouage au Fenouiller, à 10 minutes de Saint-Gilles-Croix-de-Vie",
+  mapsQuery: "15 Rue des Carrières, 85800 Le Fenouiller",
   phone: "+33675747902",
   email: "hollyatatoo@gmail.com",
   socials: {
@@ -100,8 +87,8 @@ export const siteConfig: SiteConfig = {
     { day: "Dimanche", hours: "Fermé" },
   ],
   geo: {
-    lat: 46.7058,
-    lng: -1.8315,
+    lat: 46.7189505,
+    lng: -1.8959396,
   },
   styles: [
     {

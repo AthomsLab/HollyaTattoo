@@ -7,6 +7,7 @@ const mapsUrl = googleMapsUrl(siteConfig.mapsQuery)
 
 const postalAddress = {
   "@type": "PostalAddress" as const,
+  streetAddress: siteConfig.address.street,
   addressLocality: siteConfig.address.city,
   addressRegion: siteConfig.address.department,
   postalCode: siteConfig.address.postalCode,

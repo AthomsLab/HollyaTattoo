@@ -39,8 +39,8 @@ export default function ContactPage() {
                 Contact — {siteConfig.tattooLocationHeading}
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Partagez votre projet de tatouage à {siteConfig.locationPhrase} ({siteConfig.address.department}).
-                Vous recevrez une réponse avec les disponibilités et les prochaines étapes.
+                Partagez votre projet. Vous recevrez une réponse avec les disponibilités
+                et les prochaines étapes.
               </p>
             </div>
 
@@ -58,8 +58,9 @@ export default function ContactPage() {
                     <h3 className="font-serif text-lg font-semibold text-foreground">Localisation</h3>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Studio privé à {siteConfig.address.city} ({siteConfig.address.postalCode}),{" "}
-                    {siteConfig.address.department}.<br />
+                    Studio privé {siteConfig.cityLocative}<br />
+                    {siteConfig.address.street}<br />
+                    {siteConfig.address.postalCode} {siteConfig.address.city}<br />
                     Sur rendez-vous uniquement.
                   </p>
                 </div>
@@ -98,9 +99,8 @@ export default function ContactPage() {
 
                 <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6">
                   <p className="text-xs leading-relaxed text-muted-foreground">
-                    Le studio est un espace privé. L{"'"}adresse exacte est communiquée
-                    lors de la confirmation du rendez-vous. N{"'"}hésitez pas à joindre
-                    des photos d{"'"}inspiration avec votre demande.
+                    Le studio est un espace privé, sur rendez-vous uniquement.
+                    N{"'"}hésitez pas à joindre des photos d{"'"}inspiration avec votre demande.
                   </p>
                 </div>
               </aside>

@@ -19,7 +19,7 @@ export function GalleryPreview() {
             Aperçu du studio
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Découvrez l{"'"}ambiance du studio à {siteConfig.address.city} et quelques réalisations.
+            Découvrez l{"'"}ambiance du studio {siteConfig.cityLocative} et quelques réalisations.
             Retrouvez toutes les photos dans la galerie complète.
           </p>
         </div>
