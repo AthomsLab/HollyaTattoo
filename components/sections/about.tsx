@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { aboutStudioImage } from "@/content/gallery"
 import { siteConfig } from "@/content/site"
 
 export function AboutSection() {
@@ -10,10 +11,10 @@ export function AboutSection() {
           <div className="relative flex-shrink-0">
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
-                src="/images/studioStReverend.jpg"
-                alt="Studio Holly Tattoo, vue d'ensemble avec table de soin"
-                width={480}
-                height={640}
+                src={aboutStudioImage.src}
+                alt={aboutStudioImage.alt}
+                width={aboutStudioImage.width}
+                height={aboutStudioImage.height}
                 className="h-auto max-h-[500px] w-full max-w-md object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

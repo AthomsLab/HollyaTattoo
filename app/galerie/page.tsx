@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { galleryImages } from "@/content/gallery"
 import { siteConfig } from "@/content/site"
+import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
 
 const galleryDescription = `Réalisations et ambiance du studio Holly Tattoo ${siteConfig.cityLocative} (Vendée). Tatouage fine line, blackwork, floral.`
 
@@ -47,20 +47,17 @@ export default function GaleriePage() {
 
             {/* Masonry Grid */}
             <div className="columns-2 gap-4 md:columns-3">
-              {galleryImages.map((img, i) => (
-                <div
-                  key={i}
-                  className="mb-4 break-inside-avoid overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-md"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={img.width}
-                    height={img.height}
-                    className="h-auto w-full object-cover"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
-                </div>
+              {galleryImages.map((img) => (
+                <ZoomableImage
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.width}
+                  height={img.height}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  zoomScale={img.zoomScale}
+                  className="mb-4 break-inside-avoid rounded-xl shadow-sm transition-all hover:shadow-md"
+                />
               ))}
             </div>
           </div>

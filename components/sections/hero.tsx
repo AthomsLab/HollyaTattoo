@@ -2,7 +2,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { siteConfig } from "@/content/site"
+import {
+  heroMosaicLeftColumn,
+  heroMosaicRightColumn,
+} from "@/content/hero-mosaic"
 import { Button } from "@/components/ui/button"
+import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
 
 export function HeroSection() {
   return (
@@ -59,59 +64,34 @@ export function HeroSection() {
         <div className="relative flex-1">
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-3">
-              <div className="overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg"
-                  alt="Holly concentrée sur un tatouage avec headlamp"
-                  width={480}
-                  height={640}
-                  className="h-auto w-full object-cover"
+              {heroMosaicLeftColumn.map((image) => (
+                <ZoomableImage
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
+                  priority={image.priority}
+                  zoomScale={image.zoomScale}
+                  className="rounded-2xl shadow-lg"
                 />
-              </div>
-              <div className="overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/catzoom-kdtfGyncq2Bigxg75eIV1JzGV20IV9.jpg"
-                  alt="Tatouage félin souriant - chat d'Alice in Wonderland"
-                  width={480}
-                  height={640}
-                  className="h-auto w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <div className="overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="/images/gallery/cyber_atom.webp"
-                  alt="Tatouage cyber-pop mandala sur la main - design géométrique et futuriste"
-                  width={600}
-                  height={800}
-                  className="h-auto w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+              ))}
             </div>
             <div className="flex flex-col gap-3 pt-8">
-              <div className="overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fleurs-BUsNUNbbX0PIyYAyLO6iDSVm7syX27.jpg"
-                  alt="Tatouage floral avec motifs décoratifs et rubans"
-                  width={480}
-                  height={640}
-                  className="h-auto w-full object-cover"
+              {heroMosaicRightColumn.map((image) => (
+                <ZoomableImage
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={image.priority}
+                  zoomScale={image.zoomScale}
+                  className="rounded-2xl shadow-lg"
                 />
-              </div>
-              <div className="overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="/images/back_flower.webp"
-                  alt="Tatouage floral fine line dans le dos - fleur en traits délicats"
-                  width={480}
-                  height={640}
-                  className="h-auto w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+              ))}
             </div>
           </div>
         </div>

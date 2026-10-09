@@ -1,12 +1,15 @@
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { galleryImages } from "@/content/gallery"
+import {
+  getGalleryImagesBySrc,
+  homeGalleryPreviewSrcs,
+} from "@/content/gallery"
 import { siteConfig } from "@/content/site"
 import { Button } from "@/components/ui/button"
+import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
 
 export function GalleryPreview() {
-  const previewImages = galleryImages.slice(0, 6)
+  const previewImages = getGalleryImagesBySrc(homeGalleryPreviewSrcs)
 
   return (
     <section id="galerie" className="bg-background py-20 lg:py-28">
@@ -25,17 +28,17 @@ export function GalleryPreview() {
         </div>
 
         <div className="columns-2 gap-4 md:columns-3">
-          {previewImages.map((img, i) => (
-            <div key={i} className="mb-4 break-inside-avoid overflow-hidden rounded-xl shadow-sm transition-shadow hover:shadow-md">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                width={img.width}
-                height={img.height}
-                className="h-auto w-full object-cover"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
+          {previewImages.map((img) => (
+            <ZoomableImage
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              zoomScale={img.zoomScale}
+              className="mb-4 break-inside-avoid rounded-xl shadow-sm transition-shadow hover:shadow-md"
+            />
           ))}
         </div>
 
