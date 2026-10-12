@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <>
       <SiteHeader />
-      <main className="flex min-h-[80vh] items-center justify-center pt-[72px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none flex min-h-[80vh] items-center justify-center pt-[72px]">
         <div className="mx-auto max-w-md px-4 text-center">
           <p className="font-serif text-6xl font-bold text-primary">404</p>
           <h1 className="mt-4 font-serif text-2xl font-bold text-foreground">

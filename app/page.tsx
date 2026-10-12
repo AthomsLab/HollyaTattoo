@@ -53,7 +53,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-[50px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-[50px]">
         <HeroSection />
         <AboutSection />
         <StylesSection />

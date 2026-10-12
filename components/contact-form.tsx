@@ -371,9 +371,10 @@ export function ContactForm() {
             required
             placeholder="Votre nom"
             aria-invalid={hasNameError}
+            aria-describedby={hasNameError ? "name-error" : undefined}
             className={hasNameError ? FIELD_ERROR_CLASS_NAME : undefined}
           />
-          {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+          {errors.name && <p id="name-error" role="alert" className="text-xs text-destructive">{errors.name}</p>}
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">
@@ -386,11 +387,12 @@ export function ContactForm() {
             required
             placeholder="votre@email.fr"
             aria-invalid={hasEmailError}
+            aria-describedby={hasEmailError ? "email-error" : undefined}
             onBlur={handleEmailBlur}
             onChange={handleEmailChange}
             className={hasEmailError ? FIELD_ERROR_CLASS_NAME : undefined}
           />
-          {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+          {errors.email && <p id="email-error" role="alert" className="text-xs text-destructive">{errors.email}</p>}
         </div>
       </div>
 
@@ -412,9 +414,10 @@ export function ContactForm() {
           rows={4}
           placeholder="Decrivez votre idee de tatouage, le style souhaite, l'emplacement..."
           aria-invalid={hasDescriptionError}
+            aria-describedby={hasDescriptionError ? "description-error" : undefined}
           className={hasDescriptionError ? FIELD_ERROR_CLASS_NAME : undefined}
         />
-        {errors.description && <p className="text-xs text-destructive">{errors.description}</p>}
+        {errors.description && <p id="description-error" role="alert" className="text-xs text-destructive">{errors.description}</p>}
       </div>
 
       {/* Placement & Size */}
@@ -424,20 +427,20 @@ export function ContactForm() {
           <Input id="placement" name="placement" placeholder="Ex: avant-bras, poignet..." />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="size">Taille souhaitee (optionnel)</Label>
+          <Label htmlFor="size">Taille souhaitée (optionnel)</Label>
           <Input id="size" name="size" placeholder="Ex: 5cm, grand..." />
         </div>
       </div>
 
       {/* Preferred dates */}
       <div className="flex flex-col gap-2">
-        <Label htmlFor="dates">Dates preferees (optionnel)</Label>
+        <Label htmlFor="dates">Dates préférées (optionnel)</Label>
         <Input id="dates" name="dates" placeholder="Ex: mars, week-end..." />
       </div>
 
       {/* File upload */}
       <div className="flex flex-col gap-2">
-        <Label>Inspirations (optionnel)</Label>
+        <Label htmlFor="inspirations" id="inspirations-label">Inspirations (optionnel)</Label>
         <p className="text-xs text-muted-foreground">{CONTACT_ATTACHMENTS_HELP_TEXT}</p>
         <div className="flex flex-wrap gap-2">
           {files.map((file, i) => (
@@ -447,7 +450,7 @@ export function ContactForm() {
             >
               <span className="max-w-[120px] truncate">{file.name}</span>
               <button type="button" onClick={() => removeFile(i)} aria-label={`Supprimer ${file.name}`}>
-                <X className="h-3 w-3 text-muted-foreground hover:text-destructive" />
+                <X className="h-3 w-3 text-muted-foreground hover:text-destructive" aria-hidden="true" />
               </button>
             </div>
           ))}
@@ -455,15 +458,19 @@ export function ContactForm() {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
+              aria-label="Ajouter des images d'inspiration"
               className="flex items-center gap-1.5 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary"
             >
-              <Paperclip className="h-3 w-3" />
+              <Paperclip className="h-3 w-3" aria-hidden="true" />
               Ajouter
             </button>
           )}
         </div>
         <input
           ref={fileInputRef}
+          id="inspirations"
+          aria-labelledby="inspirations-label"
+          tabIndex={-1}
           type="file"
           accept=".jpg,.jpeg,.png,.webp,.pdf"
           multiple

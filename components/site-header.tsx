@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Instagram } from "lucide-react"
 import { siteConfig } from "@/content/site"
@@ -16,10 +16,49 @@ const navLinks = [
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const mobileLinkTabIndex = mobileOpen ? undefined : -1
+  const mobileLinkTabIndex = undefined
+  const headerRef = useRef<HTMLElement>(null)
+  const wasOpen = useRef(false)
+
+  // Accessibilité : Échap ferme, focus piégé dans l'en-tête, reste de la page inerte, retour du focus au bouton
+  useEffect(() => {
+    const outside = document.querySelectorAll<HTMLElement>("main, footer, [data-skip-link]")
+    outside.forEach((el) => (mobileOpen ? el.setAttribute("inert", "") : el.removeAttribute("inert")))
+    const toggle = headerRef.current?.querySelector<HTMLButtonElement>("[aria-controls='mobile-navigation']")
+    if (!mobileOpen) {
+      if (wasOpen.current) toggle?.focus()
+      wasOpen.current = false
+      return
+    }
+    wasOpen.current = true
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false)
+        return
+      }
+      if (e.key !== "Tab" || !headerRef.current) return
+      const items = Array.from(headerRef.current.querySelectorAll<HTMLElement>("a[href], button")).filter(
+        (el) => el.offsetParent !== null,
+      )
+      const first = items[0]
+      const last = items[items.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener("keydown", onKey)
+    return () => {
+      document.removeEventListener("keydown", onKey)
+      outside.forEach((el) => el.removeAttribute("inert"))
+    }
+  }, [mobileOpen])
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
+    <header ref={headerRef} className="fixed top-0 right-0 left-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo space - now empty, logo moved to hero */}
         <Link href="/" aria-label="Holly Tattoo - Accueil" className="h-6 w-6" />
@@ -43,7 +82,7 @@ export function SiteHeader() {
               aria-label="Suivre Holly Tattoo sur Instagram"
               className="text-foreground/60 transition-colors hover:text-primary"
             >
-              <Instagram className="h-5 w-5" />
+              <Instagram className="h-5 w-5" aria-hidden="true" />
             </a>
           )}
           <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -65,7 +104,7 @@ export function SiteHeader() {
             : "pointer-events-none grid-rows-[0fr] border-transparent opacity-0",
         )}
         aria-label="Navigation mobile"
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen ? true : undefined}
       >
         <div
           className={cn(
@@ -95,7 +134,7 @@ export function SiteHeader() {
                   tabIndex={mobileLinkTabIndex}
                   className="text-foreground/60 transition-colors hover:text-primary"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-5 w-5" aria-hidden="true" />
                 </a>
               )}
             </div>

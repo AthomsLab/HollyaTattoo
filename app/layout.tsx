@@ -79,6 +79,13 @@ export default function RootLayout({
         )}
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <a
+          href="#contenu"
+          data-skip-link
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
+        >
+          Aller au contenu
+        </a>
         {children}
       </body>
     </html>
