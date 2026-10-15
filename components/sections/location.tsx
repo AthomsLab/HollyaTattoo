@@ -48,12 +48,12 @@ export function LocationSection() {
               <p className="text-sm text-foreground">
                 Shop tatouage & onglerie
                 <br />
-                en collaboration avec{" "}
+                En collaboration avec{" "}
                 <a
                   href="https://dolinails.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary underline-offset-4 hover:underline"
+                  className="font-semibold text-primary underline-offset-4 hover:underline"
                 >
                   Doli&apos;Nails
                 </a>
