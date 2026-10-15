@@ -22,46 +22,49 @@ export function HeroSection() {
 
       <div className="relative mx-auto max-w-6xl px-4 pb-12 lg:px-8 lg:pb-0">
         {/* Desktop: text left, original mosaic right */}
-        <div className="hidden lg:flex lg:flex-row lg:items-start lg:gap-16">
-          {/* Left: text content + one image below CTAs, aligned right */}
+        <div className="hidden lg:flex lg:flex-row lg:items-start lg:gap-3">
+          {/* Left: text content + one image below CTAs */}
           <div className="flex flex-1 flex-col">
-            {/* Logo */}
-            <div className="mb-8 flex justify-start">
-              <Image
-                src={siteConfig.logo}
-                alt="Holly Tattoo logo"
-                width={570}
-                height={295}
-                className="h-auto w-96"
-                sizes="384px"
-                priority
-              />
-            </div>
-            <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
-              Studio &middot; {siteConfig.address.city}
-            </span>
-            <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
-              <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
-              Cadre calme et soigné
-            </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
-              Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
-              chaque projet est préparé avec soin.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/contact">
-                  Prendre rendez-vous
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
-                <Link href="/galerie">Voir la galerie</Link>
-              </Button>
+            {/* Text content with right padding to keep away from mosaic */}
+            <div className="pr-16">
+              {/* Logo */}
+              <div className="mb-8 flex justify-start">
+                <Image
+                  src={siteConfig.logo}
+                  alt="Holly Tattoo logo"
+                  width={570}
+                  height={295}
+                  className="h-auto w-96"
+                  sizes="384px"
+                  priority
+                />
+              </div>
+              <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
+                Studio &middot; {siteConfig.address.city}
+              </span>
+              <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
+                <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
+                Cadre calme et soigné
+              </h1>
+              <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+                Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
+                Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
+                chaque projet est préparé avec soin.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Link href="/contact">
+                    Prendre rendez-vous
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
+                  <Link href="/galerie">Voir la galerie</Link>
+                </Button>
+              </div>
             </div>
             
-            {/* Single image below CTAs - aligned to the right edge */}
+            {/* Single image below CTAs - right-aligned, same width as mosaic tiles, no padding */}
             {heroExtendedImages[0] && (
               <div className="mt-8 flex justify-end">
                 <ZoomableImage
@@ -69,9 +72,9 @@ export function HeroSection() {
                   alt={heroExtendedImages[0].alt}
                   width={heroExtendedImages[0].width}
                   height={heroExtendedImages[0].height}
-                  sizes="200px"
+                  sizes="(max-width: 1024px) 25vw, 300px"
                   zoomScale={heroExtendedImages[0].zoomScale}
-                  className="w-[200px] rounded-2xl shadow-lg"
+                  className="w-[calc(50%-6px)] rounded-2xl shadow-lg"
                 />
               </div>
             )}
