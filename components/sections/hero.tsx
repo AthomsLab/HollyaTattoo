@@ -24,11 +24,16 @@ function OrbitFrame({ image, index, progress, reducedMotion }: OrbitFrameProps) 
   const currentAngle = reducedMotion ? baseAngle : baseAngle + progress * 360
 
   const angleRad = (currentAngle * Math.PI) / 180
-  const x = Math.sin(angleRad) * image.orbitRadius
-  const y = -Math.cos(angleRad) * image.orbitRadius * 0.45
+  
+  const xRadius = image.orbitRadius * 0.7
+  const yRadius = image.orbitRadius * 0.95
+  
+  const x = Math.sin(angleRad) * xRadius
+  const y = -Math.cos(angleRad) * yRadius
 
-  const zIndex = Math.round(10 + (1 - Math.cos(angleRad)) * 10)
-  const scale = 0.85 + (1 - Math.cos(angleRad)) * 0.075
+  const depthFactor = (1 + Math.sin(angleRad)) / 2
+  const zIndex = Math.round(10 + depthFactor * 10)
+  const scale = 0.82 + depthFactor * 0.18
 
   return (
     <div
@@ -95,7 +100,7 @@ export function HeroSection() {
   const [progress, reducedMotion] = useOrbitProgress(ORBIT_DURATION)
 
   return (
-    <section className="relative flex min-h-[90vh] items-center overflow-hidden bg-background">
+    <section className="relative flex min-h-[95vh] items-center overflow-hidden bg-background">
       {/* Decorative background rings with subtle motion */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
@@ -173,8 +178,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Orbiting images container */}
-          <div className="relative h-[340px] w-[340px] flex-shrink-0 sm:h-[380px] sm:w-[380px] md:h-[440px] md:w-[440px] lg:h-[480px] lg:w-[520px] xl:h-[520px] xl:w-[560px]">
+          {/* Orbiting images container - taller for clock-like layout */}
+          <div className="relative h-[400px] w-[300px] flex-shrink-0 sm:h-[460px] sm:w-[340px] md:h-[520px] md:w-[380px] lg:h-[580px] lg:w-[420px] xl:h-[620px] xl:w-[460px]">
             {orbitImages.map((image, index) => (
               <OrbitFrame
                 key={image.src}
