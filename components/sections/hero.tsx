@@ -64,17 +64,30 @@ export function HeroSection() {
               </div>
             </div>
             
-            {/* Single image below CTAs - right-aligned, same width as mosaic tiles, no padding */}
-            {heroExtendedImages[0] && (
-              <div className="mt-8 flex justify-end">
+            {/* Two images below CTAs - 2-column grid matching mosaic tile widths */}
+            {heroExtendedImages.length >= 2 && (
+              <div className="mt-8 grid grid-cols-2 gap-3 justify-self-end">
+                {/* Left column - offset down for mosaic rhythm */}
+                <div className="pt-12">
+                  <ZoomableImage
+                    src={heroExtendedImages[0].src}
+                    alt={heroExtendedImages[0].alt}
+                    width={heroExtendedImages[0].width}
+                    height={heroExtendedImages[0].height}
+                    sizes="(max-width: 1024px) 25vw, 300px"
+                    zoomScale={heroExtendedImages[0].zoomScale}
+                    className="rounded-2xl shadow-lg"
+                  />
+                </div>
+                {/* Right column - japan_btc against the mosaic */}
                 <ZoomableImage
-                  src={heroExtendedImages[0].src}
-                  alt={heroExtendedImages[0].alt}
-                  width={heroExtendedImages[0].width}
-                  height={heroExtendedImages[0].height}
+                  src={heroExtendedImages[1].src}
+                  alt={heroExtendedImages[1].alt}
+                  width={heroExtendedImages[1].width}
+                  height={heroExtendedImages[1].height}
                   sizes="(max-width: 1024px) 25vw, 300px"
-                  zoomScale={heroExtendedImages[0].zoomScale}
-                  className="w-[calc(50%-6px)] rounded-2xl shadow-lg"
+                  zoomScale={heroExtendedImages[1].zoomScale}
+                  className="rounded-2xl shadow-lg"
                 />
               </div>
             )}

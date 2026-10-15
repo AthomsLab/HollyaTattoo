@@ -16,28 +16,34 @@ export function ScrollReveal({
   children,
   className,
   delay = 0,
-  duration = 600,
+  duration = 700,
   once = true,
-  threshold = 0.1,
+  threshold = 0.15,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [hasHydrated, setHasHydrated] = useState(false)
+  const [isReady, setIsReady] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    setHasHydrated(true)
-
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
     setReducedMotion(mq.matches)
     
     const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
     mq.addEventListener("change", onChange)
-    return () => mq.removeEventListener("change", onChange)
+    
+    const timer = requestAnimationFrame(() => {
+      setIsReady(true)
+    })
+    
+    return () => {
+      mq.removeEventListener("change", onChange)
+      cancelAnimationFrame(timer)
+    }
   }, [])
 
   useEffect(() => {
-    if (!hasHydrated || reducedMotion) {
+    if (!isReady || reducedMotion) {
       setIsVisible(true)
       return
     }
@@ -54,30 +60,27 @@ export function ScrollReveal({
           setIsVisible(false)
         }
       },
-      { threshold, rootMargin: "0px 0px -50px 0px" }
+      { threshold, rootMargin: "0px 0px -100px 0px" }
     )
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [hasHydrated, reducedMotion, once, threshold])
+  }, [isReady, reducedMotion, once, threshold])
 
-  if (reducedMotion || !hasHydrated) {
+  if (reducedMotion) {
     return <div className={className}>{children}</div>
   }
 
   return (
     <div
       ref={ref}
-      className={cn(
-        "transition-all ease-out",
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-6",
-        className
-      )}
+      className={cn(className)}
       style={{
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(48px)",
+        transition: isReady 
+          ? `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`
+          : "none",
       }}
     >
       {children}
@@ -100,28 +103,34 @@ export function StaggerReveal({
   className,
   childClassName,
   staggerDelay = 100,
-  duration = 600,
+  duration = 700,
   once = true,
-  threshold = 0.1,
+  threshold = 0.15,
 }: StaggerRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [hasHydrated, setHasHydrated] = useState(false)
+  const [isReady, setIsReady] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    setHasHydrated(true)
-
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
     setReducedMotion(mq.matches)
     
     const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
     mq.addEventListener("change", onChange)
-    return () => mq.removeEventListener("change", onChange)
+    
+    const timer = requestAnimationFrame(() => {
+      setIsReady(true)
+    })
+    
+    return () => {
+      mq.removeEventListener("change", onChange)
+      cancelAnimationFrame(timer)
+    }
   }, [])
 
   useEffect(() => {
-    if (!hasHydrated || reducedMotion) {
+    if (!isReady || reducedMotion) {
       setIsVisible(true)
       return
     }
@@ -138,14 +147,14 @@ export function StaggerReveal({
           setIsVisible(false)
         }
       },
-      { threshold, rootMargin: "0px 0px -50px 0px" }
+      { threshold, rootMargin: "0px 0px -100px 0px" }
     )
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [hasHydrated, reducedMotion, once, threshold])
+  }, [isReady, reducedMotion, once, threshold])
 
-  if (reducedMotion || !hasHydrated) {
+  if (reducedMotion) {
     return <div className={className}>{children}</div>
   }
 
@@ -154,16 +163,13 @@ export function StaggerReveal({
       {children.map((child, index) => (
         <div
           key={index}
-          className={cn(
-            "transition-all ease-out",
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-6",
-            childClassName
-          )}
+          className={cn(childClassName)}
           style={{
-            transitionDuration: `${duration}ms`,
-            transitionDelay: `${index * staggerDelay}ms`,
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(48px)",
+            transition: isReady 
+              ? `opacity ${duration}ms ease-out ${index * staggerDelay}ms, transform ${duration}ms ease-out ${index * staggerDelay}ms`
+              : "none",
           }}
         >
           {child}

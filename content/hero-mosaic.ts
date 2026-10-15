@@ -17,6 +17,12 @@ export type HeroExtendedImage = {
 
 export const heroExtendedImages: HeroExtendedImage[] = [
   {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/miroir-0Noypiy7xKgKdrcV4PVKJdKvrAAmqI.jpg",
+    alt: "Tatouage gothique - tour et chapelle architecturale fine line",
+    width: 960,
+    height: 1280,
+  },
+  {
     src: "/images/gallery/japan_btc.webp",
     alt: "Tatouage personnage japonais avec bun ears - style dark-pop",
     width: 600,
