@@ -21,12 +21,12 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pb-12 lg:px-8 lg:pb-0">
-        {/* Desktop: seamless mosaic grid layout */}
-        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-3">
-          {/* Left column: text + extended image below */}
-          <div className="col-span-5 flex flex-col">
+        {/* Desktop: text left with extra mosaic column, main mosaic right */}
+        <div className="hidden lg:flex lg:gap-3">
+          {/* Left side: text + stacked extended images flush-right */}
+          <div className="flex flex-1 gap-3">
             {/* Text content */}
-            <div className="flex flex-col pr-8">
+            <div className="flex flex-1 flex-col">
               {/* Logo */}
               <div className="mb-8 flex justify-start">
                 <Image
@@ -64,26 +64,27 @@ export function HeroSection() {
               </div>
             </div>
             
-            {/* Single extended image below text - continues the mosaic */}
-            <div className="mt-6 pr-0">
-              {heroExtendedImages[0] && (
+            {/* Extended images column - flush right, same width as mosaic columns */}
+            <div className="flex w-[180px] flex-shrink-0 flex-col gap-3 pt-16">
+              {heroExtendedImages.map((image) => (
                 <ZoomableImage
-                  src={heroExtendedImages[0].src}
-                  alt={heroExtendedImages[0].alt}
-                  width={heroExtendedImages[0].width}
-                  height={heroExtendedImages[0].height}
-                  sizes="280px"
-                  zoomScale={heroExtendedImages[0].zoomScale}
-                  className="rounded-2xl shadow-lg w-full max-w-[280px]"
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  sizes="180px"
+                  zoomScale={image.zoomScale}
+                  className="rounded-2xl shadow-lg"
                 />
-              )}
+              ))}
             </div>
           </div>
 
-          {/* Right column: main mosaic */}
-          <div className="col-span-7">
+          {/* Right side: main mosaic (original images only) */}
+          <div className="flex-shrink-0">
             <div className="grid grid-cols-2 gap-3">
-              <div className="flex flex-col gap-3">
+              <div className="flex w-[180px] flex-col gap-3">
                 {heroMosaicLeftColumn.map((image) => (
                   <ZoomableImage
                     key={image.src}
@@ -91,14 +92,14 @@ export function HeroSection() {
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    sizes="(max-width: 768px) 100vw, 350px"
+                    sizes="180px"
                     priority={image.priority}
                     zoomScale={image.zoomScale}
                     className="rounded-2xl shadow-lg"
                   />
                 ))}
               </div>
-              <div className="flex flex-col gap-3 pt-8">
+              <div className="flex w-[180px] flex-col gap-3 pt-8">
                 {heroMosaicRightColumn.map((image) => (
                   <ZoomableImage
                     key={image.src}
@@ -106,21 +107,8 @@ export function HeroSection() {
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    sizes="(max-width: 768px) 100vw, 350px"
+                    sizes="180px"
                     priority={image.priority}
-                    zoomScale={image.zoomScale}
-                    className="rounded-2xl shadow-lg"
-                  />
-                ))}
-                {/* Extended images join right column */}
-                {heroExtendedImages.slice(1, 3).map((image) => (
-                  <ZoomableImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="350px"
                     zoomScale={image.zoomScale}
                     className="rounded-2xl shadow-lg"
                   />

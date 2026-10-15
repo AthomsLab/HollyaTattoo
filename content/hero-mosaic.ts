@@ -28,12 +28,6 @@ export const heroExtendedImages: HeroExtendedImage[] = [
     width: 960,
     height: 1280,
   },
-  {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HollyBw-y4kV58IJQ35EVqYOfBqSJtUCvNmKxP.jpg",
-    alt: "Holly tatouant en noir et blanc - détail du travail",
-    width: 960,
-    height: 1280,
-  },
 ]
 
 export const heroMosaicLeftColumn: HeroMosaicImage[] = [
