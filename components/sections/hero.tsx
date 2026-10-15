@@ -11,7 +11,7 @@ import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[auto] overflow-hidden bg-background pt-20 md:pt-24 lg:min-h-[85vh] lg:items-center lg:pt-20">
+    <section className="relative flex min-h-[auto] overflow-hidden bg-background pt-20 md:pt-24 lg:min-h-[85vh] lg:items-center lg:pt-[180px]">
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-52 -right-32 h-96 w-96 rounded-full bg-primary/5" />
@@ -38,7 +38,7 @@ export function HeroSection() {
           <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
             Studio &middot; {siteConfig.address.city}
           </span>
-          <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
+          <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl lg:text-[50px]">
             <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
             Cadre calme et soigné
           </h1>
