@@ -9,7 +9,7 @@ import { orbitImages } from "@/content/hero-mosaic"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const ORBIT_DURATION = 45000
+const ORBIT_DURATION = 90000
 const TOTAL_IMAGES = orbitImages.length
 
 type OrbitFrameProps = {
