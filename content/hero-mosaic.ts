@@ -7,70 +7,63 @@ export type HeroMosaicImage = {
   zoomScale?: number
 }
 
-export type HeroFloatingImage = {
+export type OrbitImage = {
   src: string
   alt: string
   priority: boolean
-  positionClasses: string
   sizeClasses: string
-  zIndex: number
   sizes: string
+  orbitRadius: number
 }
 
-export const heroFloatingImages: HeroFloatingImage[] = [
+export const orbitImages: OrbitImage[] = [
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg",
     alt: "Holly concentrée sur un tatouage avec headlamp",
     priority: true,
-    positionClasses: "top-[5%] left-[8%] rotate-[-4deg]",
-    sizeClasses: "w-32 h-40 sm:w-36 sm:h-44 md:w-40 md:h-52 lg:w-44 lg:h-56",
-    zIndex: 15,
-    sizes: "(max-width: 640px) 128px, (max-width: 768px) 144px, (max-width: 1024px) 160px, 176px",
+    sizeClasses: "w-28 h-36 sm:w-32 sm:h-40 md:w-36 md:h-44 lg:w-44 lg:h-56 xl:w-48 xl:h-60",
+    sizes: "(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, (max-width: 1280px) 176px, 192px",
+    orbitRadius: 130,
   },
   {
     src: "/images/gallery/tiger_arm.webp",
     alt: "Tatouage tigre blackwork sur l'avant-bras",
     priority: true,
-    positionClasses: "top-[2%] right-[12%] rotate-[6deg]",
-    sizeClasses: "w-28 h-44 sm:w-32 sm:h-48 md:w-36 md:h-56 lg:w-40 lg:h-64",
-    zIndex: 20,
-    sizes: "(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px",
+    sizeClasses: "w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-36 lg:h-56 xl:w-40 xl:h-60",
+    sizes: "(max-width: 640px) 96px, (max-width: 768px) 112px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, 160px",
+    orbitRadius: 140,
   },
   {
     src: "/images/gallery/papillons.webp",
     alt: "Tatouage deux papillons fine line sur le bras",
     priority: false,
-    positionClasses: "top-[38%] left-[2%] rotate-[-2deg]",
-    sizeClasses: "w-28 h-36 sm:w-32 sm:h-40 md:w-36 md:h-48 lg:w-40 lg:h-52",
-    zIndex: 10,
-    sizes: "(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px",
+    sizeClasses: "w-26 h-32 sm:w-30 sm:h-36 md:w-34 md:h-42 lg:w-40 lg:h-50 xl:w-44 xl:h-54",
+    sizes: "(max-width: 640px) 104px, (max-width: 768px) 120px, (max-width: 1024px) 136px, (max-width: 1280px) 160px, 176px",
+    orbitRadius: 125,
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fleurs-BUsNUNbbX0PIyYAyLO6iDSVm7syX27.jpg",
     alt: "Tatouage floral avec motifs décoratifs et rubans",
     priority: false,
-    positionClasses: "top-[32%] right-[5%] rotate-[3deg]",
-    sizeClasses: "w-32 h-40 sm:w-36 sm:h-44 md:w-40 md:h-52 lg:w-44 lg:h-56",
-    zIndex: 18,
-    sizes: "(max-width: 640px) 128px, (max-width: 768px) 144px, (max-width: 1024px) 160px, 176px",
+    sizeClasses: "w-28 h-36 sm:w-32 sm:h-40 md:w-36 md:h-44 lg:w-44 lg:h-56 xl:w-48 xl:h-60",
+    sizes: "(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, (max-width: 1280px) 176px, 192px",
+    orbitRadius: 135,
   },
   {
     src: "/images/gallery/dragon.webp",
     alt: "Tatouage dragon et soleil fine line sur l'avant-bras",
     priority: false,
-    positionClasses: "bottom-[8%] left-[18%] rotate-[5deg]",
-    sizeClasses: "w-30 h-38 sm:w-34 sm:h-44 md:w-38 md:h-52 lg:w-42 lg:h-56",
-    zIndex: 12,
-    sizes: "(max-width: 640px) 120px, (max-width: 768px) 136px, (max-width: 1024px) 152px, 168px",
+    sizeClasses: "w-26 h-34 sm:w-30 sm:h-38 md:w-34 md:h-44 lg:w-40 lg:h-52 xl:w-44 xl:h-56",
+    sizes: "(max-width: 640px) 104px, (max-width: 768px) 120px, (max-width: 1024px) 136px, (max-width: 1280px) 160px, 176px",
+    orbitRadius: 128,
   },
   {
     src: "/images/back_flower.webp",
     alt: "Tatouage floral fine line dans le dos",
     priority: false,
-    positionClasses: "bottom-[12%] right-[15%] rotate-[-3deg]",
-    sizeClasses: "w-28 h-36 sm:w-32 sm:h-40 md:w-36 md:h-48 lg:w-40 lg:h-52",
-    zIndex: 14,
-    sizes: "(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px",
+    sizeClasses: "w-26 h-32 sm:w-30 sm:h-36 md:w-34 md:h-42 lg:w-40 lg:h-50 xl:w-44 xl:h-54",
+    sizes: "(max-width: 640px) 104px, (max-width: 768px) 120px, (max-width: 1024px) 136px, (max-width: 1280px) 160px, 176px",
+    orbitRadius: 132,
   },
 ]
 

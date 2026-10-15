@@ -11,7 +11,12 @@ export function MobileMenuButton({ open, onToggle }: MobileMenuButtonProps) {
   return (
     <button
       type="button"
-      className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
+      className={cn(
+        "relative flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 md:hidden",
+        "border border-border/60 bg-background/90 shadow-lg shadow-black/10 backdrop-blur-lg",
+        "text-foreground hover:bg-secondary hover:shadow-xl",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      )}
       onClick={onToggle}
       aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
       aria-expanded={open}

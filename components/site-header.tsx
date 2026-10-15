@@ -74,33 +74,19 @@ export function SiteHeader() {
       ref={headerRef}
       className={cn(
         "fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-out",
-        scrolled ? "py-2" : "py-3 md:py-4"
+        scrolled ? "py-2 md:py-2" : "py-3 md:py-4"
       )}
     >
-      {/* Centered pill container */}
+      {/* Desktop: Centered pill with nav only (hidden on mobile) */}
       <div
         className={cn(
-          "mx-auto flex max-w-3xl items-center justify-between px-4 transition-all duration-300 ease-out md:px-6",
+          "mx-auto hidden max-w-fit items-center justify-center px-2 transition-all duration-300 ease-out md:flex",
           scrolled
-            ? "rounded-full border border-border/60 bg-background/90 py-2 shadow-lg shadow-black/5 backdrop-blur-lg"
-            : "rounded-2xl border border-transparent bg-background/50 py-2.5 backdrop-blur-sm md:rounded-full"
+            ? "rounded-full border border-border/60 bg-background/90 py-1.5 shadow-lg shadow-black/5 backdrop-blur-lg"
+            : "rounded-full border border-transparent bg-background/50 py-2 backdrop-blur-sm"
         )}
       >
-        {/* Logo placeholder / home link */}
-        <Link
-          href="/"
-          aria-label="Holly Tattoo - Accueil"
-          className={cn(
-            "flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200",
-            "text-foreground/70 hover:bg-secondary hover:text-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          )}
-        >
-          <span className="font-serif text-lg font-bold">H</span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <nav className="flex items-center gap-1" aria-label="Navigation principale">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -140,16 +126,18 @@ export function SiteHeader() {
             <Link href="/contact">Prendre RDV</Link>
           </Button>
         </nav>
+      </div>
 
-        {/* Mobile Toggle */}
+      {/* Mobile: Floating hamburger button only (no bar/pill when closed) */}
+      <div className="flex justify-end px-4 md:hidden">
         <MobileMenuButton open={mobileOpen} onToggle={() => setMobileOpen((open) => !open)} />
       </div>
 
-      {/* Mobile Nav - positioned below the pill */}
+      {/* Mobile Nav dropdown */}
       <nav
         id="mobile-navigation"
         className={cn(
-          "mx-auto mt-2 max-w-3xl overflow-hidden px-4 transition-all duration-300 ease-out md:hidden",
+          "mx-auto mt-2 max-w-sm overflow-hidden px-4 transition-all duration-300 ease-out md:hidden",
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         )}
         aria-label="Navigation mobile"
