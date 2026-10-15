@@ -63,6 +63,17 @@ export default function ContactPage() {
                     {siteConfig.address.postalCode} {siteConfig.address.city}<br />
                     Sur rendez-vous uniquement.
                   </p>
+                  <p className="mt-3 text-sm text-foreground">
+                    Shop tatouage & onglerie ·{" "}
+                    <a
+                      href="https://dolinails.vercel.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      Doli&apos;Nails
+                    </a>
+                  </p>
                 </div>
 
                 {siteConfig.email && (
