@@ -21,70 +21,66 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pb-12 lg:px-8 lg:pb-0">
-        {/* Desktop: text left with extra mosaic column, main mosaic right */}
-        <div className="hidden lg:flex lg:gap-3">
-          {/* Left side: text + stacked extended images flush-right */}
-          <div className="flex flex-1 gap-3">
-            {/* Text content */}
-            <div className="flex flex-1 flex-col">
-              {/* Logo */}
-              <div className="mb-8 flex justify-start">
-                <Image
-                  src={siteConfig.logo}
-                  alt="Holly Tattoo logo"
-                  width={570}
-                  height={295}
-                  className="h-auto w-96"
-                  sizes="384px"
-                  priority
-                />
-              </div>
-              <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
-                Studio &middot; {siteConfig.address.city}
-              </span>
-              <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
-                <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
-                Cadre calme et soigné
-              </h1>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-                Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
-                Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
-                chaque projet est préparé avec soin.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link href="/contact">
-                    Prendre rendez-vous
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
-                  <Link href="/galerie">Voir la galerie</Link>
-                </Button>
-              </div>
+        {/* Desktop: text left, original mosaic right */}
+        <div className="hidden lg:flex lg:flex-row lg:items-start lg:gap-16">
+          {/* Left: text content + one image below CTAs, aligned right */}
+          <div className="flex flex-1 flex-col">
+            {/* Logo */}
+            <div className="mb-8 flex justify-start">
+              <Image
+                src={siteConfig.logo}
+                alt="Holly Tattoo logo"
+                width={570}
+                height={295}
+                className="h-auto w-96"
+                sizes="384px"
+                priority
+              />
+            </div>
+            <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
+              Studio &middot; {siteConfig.address.city}
+            </span>
+            <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
+              <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
+              Cadre calme et soigné
+            </h1>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+              Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
+              Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
+              chaque projet est préparé avec soin.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="/contact">
+                  Prendre rendez-vous
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
+                <Link href="/galerie">Voir la galerie</Link>
+              </Button>
             </div>
             
-            {/* Extended images column - flush right, same width as mosaic columns */}
-            <div className="flex w-[180px] flex-shrink-0 flex-col gap-3 pt-16">
-              {heroExtendedImages.map((image) => (
+            {/* Single image below CTAs - aligned to the right edge */}
+            {heroExtendedImages[0] && (
+              <div className="mt-8 flex justify-end">
                 <ZoomableImage
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="180px"
-                  zoomScale={image.zoomScale}
-                  className="rounded-2xl shadow-lg"
+                  src={heroExtendedImages[0].src}
+                  alt={heroExtendedImages[0].alt}
+                  width={heroExtendedImages[0].width}
+                  height={heroExtendedImages[0].height}
+                  sizes="200px"
+                  zoomScale={heroExtendedImages[0].zoomScale}
+                  className="w-[200px] rounded-2xl shadow-lg"
                 />
-              ))}
-            </div>
+              </div>
+            )}
           </div>
 
-          {/* Right side: main mosaic (original images only) */}
-          <div className="flex-shrink-0">
+          {/* Right: original 2-column mosaic (unchanged) */}
+          <div className="relative flex-1">
             <div className="grid grid-cols-2 gap-3">
-              <div className="flex w-[180px] flex-col gap-3">
+              <div className="flex flex-col gap-3">
                 {heroMosaicLeftColumn.map((image) => (
                   <ZoomableImage
                     key={image.src}
@@ -92,14 +88,14 @@ export function HeroSection() {
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    sizes="180px"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     priority={image.priority}
                     zoomScale={image.zoomScale}
                     className="rounded-2xl shadow-lg"
                   />
                 ))}
               </div>
-              <div className="flex w-[180px] flex-col gap-3 pt-8">
+              <div className="flex flex-col gap-3 pt-8">
                 {heroMosaicRightColumn.map((image) => (
                   <ZoomableImage
                     key={image.src}
@@ -107,7 +103,7 @@ export function HeroSection() {
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    sizes="180px"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     priority={image.priority}
                     zoomScale={image.zoomScale}
                     className="rounded-2xl shadow-lg"

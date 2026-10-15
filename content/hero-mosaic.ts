@@ -22,12 +22,6 @@ export const heroExtendedImages: HeroExtendedImage[] = [
     width: 600,
     height: 800,
   },
-  {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/miroir-0Noypiy7xKgKdrcV4PVKJdKvrAAmqI.jpg",
-    alt: "Tatouage gothique - tour et chapelle architecturale fine line",
-    width: 960,
-    height: 1280,
-  },
 ]
 
 export const heroMosaicLeftColumn: HeroMosaicImage[] = [
