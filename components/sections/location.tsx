@@ -45,6 +45,19 @@ export function LocationSection() {
                 {siteConfig.address.postalCode} {siteConfig.address.city}<br />
                 {siteConfig.address.department}, {siteConfig.address.region}
               </p>
+              <p className="text-sm text-foreground">
+                Shop tatouage & onglerie
+                <br />
+                en collaboration avec{" "}
+                <a
+                  href="https://dolinails.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  Doli&apos;Nails
+                </a>
+              </p>
               <a
                 href={mapsUrl}
                 target="_blank"
