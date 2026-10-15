@@ -64,7 +64,9 @@ export default function ContactPage() {
                     Sur rendez-vous uniquement.
                   </p>
                   <p className="mt-3 text-sm text-foreground">
-                    Shop tatouage & onglerie ·{" "}
+                    Shop tatouage & onglerie
+                    <br />
+                    en collaboration avec{" "}
                     <a
                       href="https://dolinails.vercel.app"
                       target="_blank"

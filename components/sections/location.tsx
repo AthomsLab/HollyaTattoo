@@ -46,7 +46,9 @@ export function LocationSection() {
                 {siteConfig.address.department}, {siteConfig.address.region}
               </p>
               <p className="text-sm text-foreground">
-                Shop tatouage & onglerie ·{" "}
+                Shop tatouage & onglerie
+                <br />
+                en collaboration avec{" "}
                 <a
                   href="https://dolinails.vercel.app"
                   target="_blank"
