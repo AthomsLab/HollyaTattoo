@@ -11,7 +11,7 @@ import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-background">
+    <section className="relative flex min-h-[auto] overflow-hidden bg-background pt-20 md:pt-24 lg:min-h-[85vh] lg:items-center lg:pt-20">
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-52 -right-32 h-96 w-96 rounded-full bg-primary/5" />
@@ -19,8 +19,8 @@ export function HeroSection() {
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/10" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-6 lg:px-8">
-        <div className="flex flex-col items-center gap-12 pb-24 lg:flex-row lg:gap-16">
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 lg:px-8 lg:pb-16">
+        <div className="flex flex-col items-center gap-8 md:gap-10 lg:flex-row lg:items-start lg:gap-16">
         {/* Text content */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
           {/* Logo */}
