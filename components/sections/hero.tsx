@@ -64,20 +64,19 @@ export function HeroSection() {
               </div>
             </div>
             
-            {/* Extended image below text - continues the mosaic */}
-            <div className="mt-6 grid grid-cols-2 gap-3 pr-0">
-              {heroExtendedImages.slice(0, 2).map((image) => (
+            {/* Single extended image below text - continues the mosaic */}
+            <div className="mt-6 pr-0">
+              {heroExtendedImages[0] && (
                 <ZoomableImage
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="200px"
-                  zoomScale={image.zoomScale}
-                  className="rounded-2xl shadow-lg"
+                  src={heroExtendedImages[0].src}
+                  alt={heroExtendedImages[0].alt}
+                  width={heroExtendedImages[0].width}
+                  height={heroExtendedImages[0].height}
+                  sizes="280px"
+                  zoomScale={heroExtendedImages[0].zoomScale}
+                  className="rounded-2xl shadow-lg w-full max-w-[280px]"
                 />
-              ))}
+              )}
             </div>
           </div>
 
@@ -113,18 +112,19 @@ export function HeroSection() {
                     className="rounded-2xl shadow-lg"
                   />
                 ))}
-                {/* Third extended image joins right column */}
-                {heroExtendedImages[2] && (
+                {/* Extended images join right column */}
+                {heroExtendedImages.slice(1, 3).map((image) => (
                   <ZoomableImage
-                    src={heroExtendedImages[2].src}
-                    alt={heroExtendedImages[2].alt}
-                    width={heroExtendedImages[2].width}
-                    height={heroExtendedImages[2].height}
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
                     sizes="350px"
-                    zoomScale={heroExtendedImages[2].zoomScale}
+                    zoomScale={image.zoomScale}
                     className="rounded-2xl shadow-lg"
                   />
-                )}
+                ))}
               </div>
             </div>
           </div>
