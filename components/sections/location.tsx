@@ -1,6 +1,7 @@
 import { MapPin, Clock } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { googleMapsUrl } from "@/content/seo"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 export function LocationSection() {
   const mapsUrl = googleMapsUrl(siteConfig.mapsQuery)
@@ -10,18 +11,18 @@ export function LocationSection() {
   return (
     <section id="localisation" className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="mb-14 text-center">
+        <ScrollReveal className="mb-14 text-center">
           <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
             Localisation
           </span>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
             Où nous trouver
           </h2>
-        </div>
+        </ScrollReveal>
 
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
           {/* Map */}
-          <div className="flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
+          <ScrollReveal className="flex-1 overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
               src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.geo.lng - mapBboxPaddingLng},${siteConfig.geo.lat - mapBboxPaddingLat},${siteConfig.geo.lng + mapBboxPaddingLng},${siteConfig.geo.lat + mapBboxPaddingLat}&layer=mapnik&marker=${siteConfig.geo.lat},${siteConfig.geo.lng}`}
               width="100%"
@@ -31,10 +32,10 @@ export function LocationSection() {
               title={`Carte du studio Holly Tattoo ${siteConfig.cityLocative}`}
               aria-label="Carte interactive montrant la localisation du studio"
             />
-          </div>
+          </ScrollReveal>
 
           {/* Info */}
-          <div className="flex flex-col gap-8 lg:w-80">
+          <ScrollReveal delay={150} className="flex flex-col gap-8 lg:w-80">
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2 text-primary">
                 <MapPin className="h-5 w-5" />
@@ -84,7 +85,7 @@ export function LocationSection() {
                 ))}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

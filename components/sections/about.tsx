@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { aboutStudioImage } from "@/content/gallery"
 import { siteConfig } from "@/content/site"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 export function AboutSection() {
   return (
@@ -8,7 +9,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
           {/* Image */}
-          <div className="relative flex-shrink-0">
+          <ScrollReveal className="relative flex-shrink-0">
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <Image
                 src={aboutStudioImage.src}
@@ -21,10 +22,10 @@ export function AboutSection() {
             </div>
             {/* Decorative accent */}
             <div className="absolute -bottom-3 -right-3 h-full w-full rounded-3xl border-2 border-accent/20" />
-          </div>
+          </ScrollReveal>
 
           {/* Content */}
-          <div className="flex flex-1 flex-col">
+          <ScrollReveal delay={150} className="flex flex-1 flex-col">
             <span className="mb-3 text-sm font-medium tracking-wider text-primary uppercase">
               A propos
             </span>
@@ -51,7 +52,7 @@ export function AboutSection() {
                 attention particulière aux détails.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

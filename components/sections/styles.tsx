@@ -1,5 +1,6 @@
 import { Sparkles, Contrast, Flower2, CircleDot } from "lucide-react"
 import { siteConfig } from "@/content/site"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 const styleIcons = [Sparkles, Contrast, Flower2, CircleDot]
 
@@ -7,7 +8,7 @@ export function StylesSection() {
   return (
     <section id="styles" className="bg-secondary/40 py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="mb-14 text-center">
+        <ScrollReveal className="mb-14 text-center">
           <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
             Spécialités
           </span>
@@ -18,26 +19,25 @@ export function StylesSection() {
             Chaque projet est adapté à votre style et à votre peau. Voici les univers
             dans lesquels le studio évolue le plus souvent.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:max-w-4xl lg:mx-auto">
           {siteConfig.styles.map((style, i) => {
             const Icon = styleIcons[i % styleIcons.length]
             return (
-              <div
-                key={style.name}
-                className="group flex flex-col items-center rounded-2xl border border-border/50 bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon className="h-6 w-6" />
+              <ScrollReveal key={style.name} delay={i * 100}>
+                <div className="group flex flex-col items-center rounded-2xl border border-border/50 bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md h-full">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mb-2 font-serif text-lg font-semibold text-foreground">
+                    {style.name}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {style.description}
+                  </p>
                 </div>
-                <h3 className="mb-2 font-serif text-lg font-semibold text-foreground">
-                  {style.name}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {style.description}
-                </p>
-              </div>
+              </ScrollReveal>
             )
           })}
         </div>
