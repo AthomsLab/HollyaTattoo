@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { galleryImages } from "@/content/gallery"
 import { siteConfig } from "@/content/site"
 import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
+import { ScrollReveal } from "@/components/scroll-reveal"
+import { Button } from "@/components/ui/button"
 
 const galleryDescription = `Réalisations et ambiance du studio Holly Tattoo ${siteConfig.cityLocative} (Vendée). Tatouage fine line, blackwork, floral.`
 
@@ -28,10 +32,10 @@ export default function GaleriePage() {
   return (
     <>
       <SiteHeader />
-      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-[72px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-20">
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
-            {/* Header */}
+            {/* Header - above fold, no animation */}
             <div className="mb-12 text-center">
               <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
                 Portfolio
@@ -45,21 +49,35 @@ export default function GaleriePage() {
               </p>
             </div>
 
-            {/* Masonry Grid */}
+            {/* Masonry Grid - column-based delay like Aperçu rows */}
             <div className="columns-2 gap-4 md:columns-3">
-              {galleryImages.map((img) => (
-                <ZoomableImage
-                  key={img.src}
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  zoomScale={img.zoomScale}
-                  className="mb-4 break-inside-avoid rounded-xl shadow-sm transition-all hover:shadow-md"
-                />
+              {galleryImages.map((img, i) => (
+                <ScrollReveal key={img.src} delay={(i % 3) * 75} className="mb-4 break-inside-avoid">
+                  <ZoomableImage
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    zoomScale={img.zoomScale}
+                    className="rounded-xl shadow-sm transition-all hover:shadow-md"
+                  />
+                </ScrollReveal>
               ))}
             </div>
+
+            {/* CTA */}
+            <ScrollReveal delay={150} className="mt-16 text-center">
+              <p className="mb-6 text-lg text-muted-foreground">
+                Envie d{"'"}un tatouage personnalisé ?
+              </p>
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="/contact">
+                  Prendre rendez-vous
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </ScrollReveal>
           </div>
         </section>
       </main>

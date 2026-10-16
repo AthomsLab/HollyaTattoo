@@ -12,7 +12,7 @@ export default function PolitiqueConfidentialite() {
   return (
     <>
       <SiteHeader />
-      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-[72px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-20">
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
             <h1 className="mb-8 font-serif text-3xl font-bold text-foreground md:text-4xl">

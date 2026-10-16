@@ -7,6 +7,29 @@ export type HeroMosaicImage = {
   zoomScale?: number
 }
 
+export type HeroExtendedImage = {
+  src: string
+  alt: string
+  width: number
+  height: number
+  zoomScale?: number
+}
+
+export const heroExtendedImages: HeroExtendedImage[] = [
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/miroir-0Noypiy7xKgKdrcV4PVKJdKvrAAmqI.jpg",
+    alt: "Tatouage gothique - tour et chapelle architecturale fine line",
+    width: 960,
+    height: 1280,
+  },
+  {
+    src: "/images/gallery/japan_btc.webp",
+    alt: "Tatouage personnage japonais avec bun ears - style dark-pop",
+    width: 600,
+    height: 800,
+  },
+]
+
 export const heroMosaicLeftColumn: HeroMosaicImage[] = [
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Holly-dvJwmXk5yN8bl9vKtETtBx71xaTz5r.jpg",

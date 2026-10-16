@@ -27,7 +27,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-[72px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-20">
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
             {/* Header */}

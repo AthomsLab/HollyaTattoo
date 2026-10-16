@@ -53,14 +53,14 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main id="contenu" tabIndex={-1} className="focus:outline-none pt-[50px]">
+      <main id="contenu" tabIndex={-1} className="focus:outline-none">
         <HeroSection />
         <AboutSection />
         <StylesSection />
         <GalleryPreview />
         <ReassuranceSection />
-        <FaqSection />
         <LocationSection />
+        <FaqSection />
         <CtaSection />
       </main>
       <SiteFooter />

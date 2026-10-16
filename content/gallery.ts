@@ -277,9 +277,6 @@ export const homeGalleryPreviewSrcs = [
   "/images/gallery/tiger.webp",
   "/images/gallery/rose_under_bbs.webp",
   "/images/gallery/loutre.webp",
-  "/images/gallery/cinq.webp",
-  "/images/gallery/bonhomme.webp",
-  "/images/gallery/papillons.webp",
 ] as const
 
 export function getGalleryImageBySrc(src: string): GalleryImage {
