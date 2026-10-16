@@ -1,5 +1,5 @@
-import { MapPin, Clock } from "lucide-react"
-import { siteConfig } from "@/content/site"
+import { MapPin, Clock, Phone } from "lucide-react"
+import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
 import { googleMapsUrl } from "@/content/seo"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
@@ -68,6 +68,21 @@ export function LocationSection() {
                 Ouvrir dans Google Maps
               </a>
             </div>
+
+            {siteConfig.phone && (
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-primary">
+                  <Phone className="h-5 w-5" />
+                  <h3 className="font-serif text-lg font-semibold text-foreground">Téléphone</h3>
+                </div>
+                <a
+                  href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                  className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+                >
+                  {formatPhoneDisplay(siteConfig.phone)}
+                </a>
+              </div>
+            )}
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2 text-primary">

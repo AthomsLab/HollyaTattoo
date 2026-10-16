@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { MapPin, Instagram, Mail } from "lucide-react"
+import { MapPin, Instagram, Mail, Phone } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ContactForm } from "@/components/contact-form"
-import { siteConfig } from "@/content/site"
+import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
 import { seoContact } from "@/content/seo"
 
 export const metadata: Metadata = {
@@ -77,6 +77,21 @@ export default function ContactPage() {
                     </a>
                   </p>
                 </div>
+
+                {siteConfig.phone && (
+                  <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Phone className="h-5 w-5" />
+                      <h3 className="font-serif text-lg font-semibold text-foreground">Téléphone</h3>
+                    </div>
+                    <a
+                      href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                      className="mt-3 block text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+                    >
+                      {formatPhoneDisplay(siteConfig.phone)}
+                    </a>
+                  </div>
+                )}
 
                 {siteConfig.email && (
                   <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
