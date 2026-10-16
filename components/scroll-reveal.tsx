@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { useState, useEffect } from "react"
 import type { ReactNode } from "react"
 
-export const HERO_STAGGER = 0.1
+export const HERO_STAGGER = 0.05
 
 type EntranceRevealProps = {
   children: ReactNode
@@ -18,8 +18,8 @@ export function EntranceReveal({
   children,
   className,
   delay = 0,
-  duration = 800,
-  y = 24,
+  duration = 450,
+  y = 16,
 }: EntranceRevealProps) {
   const reduce = useReducedMotion()
   const [mounted, setMounted] = useState(false)
@@ -38,7 +38,7 @@ export function EntranceReveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(6px)" }}
+      initial={{ opacity: 0, y, filter: "blur(4px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ 
         duration: durationInSeconds, 
@@ -65,8 +65,8 @@ export function ScrollReveal({
   children,
   className,
   delay = 0,
-  duration = 800,
-  y = 24,
+  duration = 500,
+  y = 20,
   once = true,
 }: ScrollRevealProps) {
   const reduce = useReducedMotion()
@@ -86,7 +86,7 @@ export function ScrollReveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(6px)" }}
+      initial={{ opacity: 0, y, filter: "blur(4px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once, margin: "-60px" }}
       transition={{ 
@@ -115,9 +115,9 @@ export function StaggerReveal({
   children,
   className,
   childClassName,
-  staggerDelay = 80,
-  duration = 800,
-  y = 24,
+  staggerDelay = 40,
+  duration = 500,
+  y = 20,
   once = true,
 }: StaggerRevealProps) {
   const reduce = useReducedMotion()
@@ -140,12 +140,12 @@ export function StaggerReveal({
         <motion.div
           key={index}
           className={childClassName}
-          initial={{ opacity: 0, y, filter: "blur(6px)" }}
+          initial={{ opacity: 0, y, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once, margin: "-60px" }}
           transition={{ 
             duration: durationInSeconds, 
-            delay: index * staggerInSeconds,
+            delay: Math.min(index * staggerInSeconds, 0.15),
             ease: [0.22, 1, 0.36, 1],
           }}
         >
