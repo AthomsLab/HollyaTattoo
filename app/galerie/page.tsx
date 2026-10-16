@@ -52,7 +52,7 @@ export default function GaleriePage() {
             {/* Masonry Grid - same reveal as homepage Aperçu du studio */}
             <div className="columns-2 gap-4 md:columns-3">
               {galleryImages.map((img, i) => (
-                <ScrollReveal key={img.src} delay={i * 75} duration={800} y={24} className="mb-4 break-inside-avoid">
+                <ScrollReveal key={img.src} delay={i * 75} className="mb-4 break-inside-avoid">
                   <ZoomableImage
                     src={img.src}
                     alt={img.alt}
@@ -67,7 +67,7 @@ export default function GaleriePage() {
             </div>
 
             {/* CTA */}
-            <ScrollReveal delay={300} duration={800} y={24} className="mt-16 text-center">
+            <ScrollReveal delay={300} className="mt-16 text-center">
               <p className="mb-6 text-lg text-muted-foreground">
                 Envie d{"'"}un tatouage personnalisé ?
               </p>
