@@ -49,6 +49,15 @@ export type SiteConfig = {
   logo: string
 }
 
+export function formatPhoneDisplay(phone: string): string {
+  const digits = phone.replace(/\D/g, "").slice(-10)
+  return digits.replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5")
+}
+
+export function formatPhoneTel(phone: string): string {
+  return phone.startsWith("+") ? phone : `+33${phone.slice(1)}`
+}
+
 export const siteConfig: SiteConfig = {
   name: "Holly Tattoo",
   url: "https://www.hollyatattoo.fr",

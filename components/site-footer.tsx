@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Instagram } from "lucide-react"
-import { siteConfig } from "@/content/site"
+import { Instagram, Phone } from "lucide-react"
+import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
 
 export function SiteFooter() {
   return (
@@ -16,6 +16,15 @@ export function SiteFooter() {
               Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
               Flashs sans rendez-vous, projets personnalisés sur rendez-vous.
             </p>
+            {siteConfig.phone && (
+              <a
+                href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+              >
+                <Phone className="h-4 w-4" />
+                {formatPhoneDisplay(siteConfig.phone)}
+              </a>
+            )}
             <div className="flex gap-3 pt-2">
               {siteConfig.socials.instagram && (
                 <a
