@@ -3,7 +3,7 @@ import { MapPin, Instagram, Mail, Phone } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ContactForm } from "@/components/contact-form"
-import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
+import { siteConfig } from "@/content/site"
 import { seoContact } from "@/content/seo"
 
 export const metadata: Metadata = {
@@ -85,10 +85,10 @@ export default function ContactPage() {
                       <h3 className="font-serif text-lg font-semibold text-foreground">Téléphone</h3>
                     </div>
                     <a
-                      href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                      href={`tel:${siteConfig.phone}`}
                       className="mt-3 block text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
                     >
-                      {formatPhoneDisplay(siteConfig.phone)}
+                      {siteConfig.phoneDisplay}
                     </a>
                   </div>
                 )}

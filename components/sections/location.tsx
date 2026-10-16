@@ -1,5 +1,5 @@
 import { MapPin, Clock, Phone } from "lucide-react"
-import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
+import { siteConfig } from "@/content/site"
 import { googleMapsUrl } from "@/content/seo"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
@@ -76,10 +76,10 @@ export function LocationSection() {
                   <h3 className="font-serif text-lg font-semibold text-foreground">Téléphone</h3>
                 </div>
                 <a
-                  href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                  href={`tel:${siteConfig.phone}`}
                   className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
                 >
-                  {formatPhoneDisplay(siteConfig.phone)}
+                  {siteConfig.phoneDisplay}
                 </a>
               </div>
             )}

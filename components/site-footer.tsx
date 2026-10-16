@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Instagram, Phone } from "lucide-react"
-import { siteConfig, formatPhoneDisplay, formatPhoneTel } from "@/content/site"
+import { siteConfig } from "@/content/site"
 
 export function SiteFooter() {
   return (
@@ -18,11 +18,11 @@ export function SiteFooter() {
             </p>
             {siteConfig.phone && (
               <a
-                href={`tel:${formatPhoneTel(siteConfig.phone)}`}
+                href={`tel:${siteConfig.phone}`}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
               >
                 <Phone className="h-4 w-4" />
-                {formatPhoneDisplay(siteConfig.phone)}
+                {siteConfig.phoneDisplay}
               </a>
             )}
             <div className="flex gap-3 pt-2">
