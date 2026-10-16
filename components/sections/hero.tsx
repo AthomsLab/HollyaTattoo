@@ -9,6 +9,9 @@ import {
 } from "@/content/hero-mosaic"
 import { Button } from "@/components/ui/button"
 import { ZoomableImage } from "@/components/zoomable-image/zoomable-image"
+import { EntranceReveal, HERO_STAGGER } from "@/components/scroll-reveal"
+
+const S = HERO_STAGGER
 
 export function HeroSection() {
   return (
@@ -28,7 +31,7 @@ export function HeroSection() {
             {/* Text content with right padding to keep away from mosaic */}
             <div className="pr-16">
               {/* Logo */}
-              <div className="mb-8 flex justify-start">
+              <EntranceReveal delay={S * 0} className="mb-8 flex justify-start">
                 <Image
                   src={siteConfig.logo}
                   alt="Holly Tattoo logo"
@@ -38,20 +41,26 @@ export function HeroSection() {
                   sizes="384px"
                   priority
                 />
-              </div>
-              <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
-                Studio &middot; {siteConfig.address.city}
-              </span>
-              <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
-                <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
-                Cadre calme et soigné
-              </h1>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-                Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
-                Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
-                chaque projet est préparé avec soin.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              </EntranceReveal>
+              <EntranceReveal delay={S * 1}>
+                <span className="mb-4 inline-block w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
+                  Studio &middot; {siteConfig.address.city}
+                </span>
+              </EntranceReveal>
+              <EntranceReveal delay={S * 2}>
+                <h1 className="max-w-xl font-serif text-[50px] leading-tight font-bold tracking-tight text-foreground text-balance">
+                  <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
+                  Cadre calme et soigné
+                </h1>
+              </EntranceReveal>
+              <EntranceReveal delay={S * 3}>
+                <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+                  Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
+                  Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
+                  chaque projet est préparé avec soin.
+                </p>
+              </EntranceReveal>
+              <EntranceReveal delay={S * 4} className="mt-8 flex flex-wrap items-center gap-4">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
                   <Link href="/contact">
                     Prendre rendez-vous
@@ -61,14 +70,14 @@ export function HeroSection() {
                 <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
                   <Link href="/galerie">Voir la galerie</Link>
                 </Button>
-              </div>
+              </EntranceReveal>
             </div>
             
             {/* Two images below CTAs - 2-column grid matching mosaic tile widths */}
             {heroExtendedImages.length >= 2 && (
               <div className="mt-8 grid grid-cols-2 gap-3 justify-self-end">
                 {/* Left column - offset down for mosaic rhythm */}
-                <div className="pt-12">
+                <EntranceReveal delay={S * 5} className="pt-12">
                   <ZoomableImage
                     src={heroExtendedImages[0].src}
                     alt={heroExtendedImages[0].alt}
@@ -78,52 +87,56 @@ export function HeroSection() {
                     zoomScale={heroExtendedImages[0].zoomScale}
                     className="rounded-2xl shadow-lg"
                   />
-                </div>
+                </EntranceReveal>
                 {/* Right column - japan_btc against the mosaic */}
-                <ZoomableImage
-                  src={heroExtendedImages[1].src}
-                  alt={heroExtendedImages[1].alt}
-                  width={heroExtendedImages[1].width}
-                  height={heroExtendedImages[1].height}
-                  sizes="(max-width: 1024px) 25vw, 300px"
-                  zoomScale={heroExtendedImages[1].zoomScale}
-                  className="rounded-2xl shadow-lg"
-                />
+                <EntranceReveal delay={S * 6}>
+                  <ZoomableImage
+                    src={heroExtendedImages[1].src}
+                    alt={heroExtendedImages[1].alt}
+                    width={heroExtendedImages[1].width}
+                    height={heroExtendedImages[1].height}
+                    sizes="(max-width: 1024px) 25vw, 300px"
+                    zoomScale={heroExtendedImages[1].zoomScale}
+                    className="rounded-2xl shadow-lg"
+                  />
+                </EntranceReveal>
               </div>
             )}
           </div>
 
-          {/* Right: original 2-column mosaic (unchanged) */}
+          {/* Right: original 2-column mosaic */}
           <div className="relative flex-1">
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col gap-3">
-                {heroMosaicLeftColumn.map((image) => (
-                  <ZoomableImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={image.priority}
-                    zoomScale={image.zoomScale}
-                    className="rounded-2xl shadow-lg"
-                  />
+                {heroMosaicLeftColumn.map((image, i) => (
+                  <EntranceReveal key={image.src} delay={S * (7 + i)}>
+                    <ZoomableImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={image.priority}
+                      zoomScale={image.zoomScale}
+                      className="rounded-2xl shadow-lg"
+                    />
+                  </EntranceReveal>
                 ))}
               </div>
               <div className="flex flex-col gap-3 pt-8">
-                {heroMosaicRightColumn.map((image) => (
-                  <ZoomableImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={image.priority}
-                    zoomScale={image.zoomScale}
-                    className="rounded-2xl shadow-lg"
-                  />
+                {heroMosaicRightColumn.map((image, i) => (
+                  <EntranceReveal key={image.src} delay={S * (7 + heroMosaicLeftColumn.length + i)}>
+                    <ZoomableImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={image.priority}
+                      zoomScale={image.zoomScale}
+                      className="rounded-2xl shadow-lg"
+                    />
+                  </EntranceReveal>
                 ))}
               </div>
             </div>
@@ -135,7 +148,7 @@ export function HeroSection() {
           {/* Text content */}
           <div className="flex flex-col items-center text-center">
             {/* Logo */}
-            <div className="mb-8 flex justify-center">
+            <EntranceReveal delay={S * 0} className="mb-8 flex justify-center">
               <Image
                 src={siteConfig.logo}
                 alt="Holly Tattoo logo"
@@ -145,20 +158,26 @@ export function HeroSection() {
                 sizes="(max-width: 768px) 256px, 288px"
                 priority
               />
-            </div>
-            <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
-              Studio &middot; {siteConfig.address.city}
-            </span>
-            <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl">
-              <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
-              Cadre calme et soigné
-            </h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-              Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
-              Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
-              chaque projet est préparé avec soin.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            </EntranceReveal>
+            <EntranceReveal delay={S * 1}>
+              <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium tracking-wider text-primary uppercase">
+                Studio &middot; {siteConfig.address.city}
+              </span>
+            </EntranceReveal>
+            <EntranceReveal delay={S * 2}>
+              <h1 className="max-w-xl font-serif text-4xl leading-tight font-bold tracking-tight text-foreground text-balance md:text-5xl">
+                <span className="text-primary">Tatouage</span> {siteConfig.locationPhrase}.
+                Cadre calme et soigné
+              </h1>
+            </EntranceReveal>
+            <EntranceReveal delay={S * 3}>
+              <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
+                Studio de tatouage {siteConfig.cityLocative} ({siteConfig.address.department}).
+                Flashs sans rendez-vous, projets personnalisés sur rendez-vous. Dark-pop, fine line, floral &mdash;
+                chaque projet est préparé avec soin.
+              </p>
+            </EntranceReveal>
+            <EntranceReveal delay={S * 4} className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link href="/contact">
                   Prendre rendez-vous
@@ -168,40 +187,42 @@ export function HeroSection() {
               <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
                 <Link href="/galerie">Voir la galerie</Link>
               </Button>
-            </div>
+            </EntranceReveal>
           </div>
 
           {/* Image mosaic */}
           <div className="relative w-full max-w-md">
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col gap-3">
-                {heroMosaicLeftColumn.map((image) => (
-                  <ZoomableImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="(max-width: 768px) 50vw, 200px"
-                    priority={image.priority}
-                    zoomScale={image.zoomScale}
-                    className="rounded-2xl shadow-lg"
-                  />
+                {heroMosaicLeftColumn.map((image, i) => (
+                  <EntranceReveal key={image.src} delay={S * (5 + i)}>
+                    <ZoomableImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      sizes="(max-width: 768px) 50vw, 200px"
+                      priority={image.priority}
+                      zoomScale={image.zoomScale}
+                      className="rounded-2xl shadow-lg"
+                    />
+                  </EntranceReveal>
                 ))}
               </div>
               <div className="flex flex-col gap-3 pt-8">
-                {heroMosaicRightColumn.map((image) => (
-                  <ZoomableImage
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="(max-width: 768px) 50vw, 200px"
-                    priority={image.priority}
-                    zoomScale={image.zoomScale}
-                    className="rounded-2xl shadow-lg"
-                  />
+                {heroMosaicRightColumn.map((image, i) => (
+                  <EntranceReveal key={image.src} delay={S * (5 + heroMosaicLeftColumn.length + i)}>
+                    <ZoomableImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      sizes="(max-width: 768px) 50vw, 200px"
+                      priority={image.priority}
+                      zoomScale={image.zoomScale}
+                      className="rounded-2xl shadow-lg"
+                    />
+                  </EntranceReveal>
                 ))}
               </div>
             </div>
