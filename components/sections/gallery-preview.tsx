@@ -15,7 +15,7 @@ export function GalleryPreview() {
   return (
     <section id="galerie" className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
-        <ScrollReveal className="mb-14 text-center">
+        <ScrollReveal duration={800} y={24} className="mb-14 text-center">
           <span className="mb-3 inline-block text-sm font-medium tracking-wider text-primary uppercase">
             Portfolio
           </span>
@@ -30,7 +30,7 @@ export function GalleryPreview() {
 
         <div className="columns-2 gap-4 md:columns-3">
           {previewImages.map((img, i) => (
-            <ScrollReveal key={img.src} delay={i * 75} className="mb-4 break-inside-avoid">
+            <ScrollReveal key={img.src} delay={i * 75} duration={800} y={24} className="mb-4 break-inside-avoid">
               <ZoomableImage
                 src={img.src}
                 alt={img.alt}
@@ -44,7 +44,7 @@ export function GalleryPreview() {
           ))}
         </div>
 
-        <ScrollReveal delay={300} className="mt-10 text-center">
+        <ScrollReveal delay={300} duration={800} y={24} className="mt-10 text-center">
           <Button asChild variant="outline" size="lg" className="border-border text-foreground hover:bg-secondary">
             <Link href="/galerie">
               Voir toute la galerie

@@ -49,28 +49,25 @@ export default function GaleriePage() {
               </p>
             </div>
 
-            {/* Masonry Grid - staggered scroll reveal (row-based delay, capped) */}
+            {/* Masonry Grid - same reveal as homepage Aperçu du studio */}
             <div className="columns-2 gap-4 md:columns-3">
-              {galleryImages.map((img, i) => {
-                const colDelay = Math.min((i % 3) * 0.04, 0.15)
-                return (
-                  <ScrollReveal key={img.src} delay={colDelay} duration={450} className="mb-4 break-inside-avoid">
-                    <ZoomableImage
-                      src={img.src}
-                      alt={img.alt}
-                      width={img.width}
-                      height={img.height}
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                      zoomScale={img.zoomScale}
-                      className="rounded-xl shadow-sm transition-all hover:shadow-md"
-                    />
-                  </ScrollReveal>
-                )
-              })}
+              {galleryImages.map((img, i) => (
+                <ScrollReveal key={img.src} delay={i * 75} duration={800} y={24} className="mb-4 break-inside-avoid">
+                  <ZoomableImage
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    zoomScale={img.zoomScale}
+                    className="rounded-xl shadow-sm transition-all hover:shadow-md"
+                  />
+                </ScrollReveal>
+              ))}
             </div>
 
             {/* CTA */}
-            <ScrollReveal delay={0.05} duration={450} className="mt-16 text-center">
+            <ScrollReveal delay={300} duration={800} y={24} className="mt-16 text-center">
               <p className="mb-6 text-lg text-muted-foreground">
                 Envie d{"'"}un tatouage personnalisé ?
               </p>
