@@ -41,21 +41,13 @@ export type SiteConfig = {
   tattooLocationHeading: string
   mapsQuery: string
   phone: string
+  phoneDisplay: string
   email: string
   socials: SiteSocials
   openingHours: SiteOpeningHours[]
   geo: SiteGeo
   styles: SiteStyle[]
   logo: string
-}
-
-export function formatPhoneDisplay(phone: string): string {
-  const digits = phone.replace(/\D/g, "").slice(-10)
-  return digits.replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5")
-}
-
-export function formatPhoneTel(phone: string): string {
-  return phone.startsWith("+") ? phone : `+33${phone.slice(1)}`
 }
 
 export const siteConfig: SiteConfig = {
@@ -80,6 +72,7 @@ export const siteConfig: SiteConfig = {
     "Tatouage au Fenouiller, à 10 minutes de Saint-Gilles-Croix-de-Vie",
   mapsQuery: "15 Rue des Carrières, 85800 Le Fenouiller",
   phone: "+33687357867",
+  phoneDisplay: "+33 6 87 35 78 67",
   email: "hollyatatoo@gmail.com",
   socials: {
     instagram: "https://www.instagram.com/hollya_tattoo/",
