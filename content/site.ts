@@ -70,7 +70,7 @@ export const siteConfig: SiteConfig = {
   tattooLocationHeading:
     "Tatouage au Fenouiller, à 10 minutes de Saint-Gilles-Croix-de-Vie",
   mapsQuery: "15 Rue des Carrières, 85800 Le Fenouiller",
-  phone: "+33675747902",
+  phone: "+33687357867",
   email: "hollyatatoo@gmail.com",
   socials: {
     instagram: "https://www.instagram.com/hollya_tattoo/",
