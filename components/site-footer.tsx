@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Instagram, Phone } from "lucide-react"
 import { siteConfig } from "@/content/site"
@@ -78,6 +79,25 @@ export function SiteFooter() {
           <p>
             Studio {siteConfig.cityLocative} ({siteConfig.address.postalCode}) — {siteConfig.address.department}
           </p>
+        </div>
+
+        {/* Credit */}
+        <div className="mt-6 flex justify-center">
+          <a
+            href="https://athomslab.fr"
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/70 transition-colors hover:text-primary hover:underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+          >
+            <Image
+              src="/brand/athoms-lab-icon.png"
+              alt="Athoms Lab"
+              width={16}
+              height={16}
+              className="h-4 w-4"
+            />
+            Site réalisé par Athoms Lab
+          </a>
         </div>
       </div>
     </footer>
